@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 class GoalsViewModel: ObservableObject {
     @Published var goals: [Goal] = []
@@ -9,12 +10,11 @@ class GoalsViewModel: ObservableObject {
     }
     
     func toggleExpanded(goalId: UUID) {
-        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-            if expandedGoalId == goalId {
-                expandedGoalId = nil
-            } else {
-                expandedGoalId = goalId
-            }
+        // Animation will be handled by the view
+        if expandedGoalId == goalId {
+            expandedGoalId = nil
+        } else {
+            expandedGoalId = goalId
         }
     }
 }

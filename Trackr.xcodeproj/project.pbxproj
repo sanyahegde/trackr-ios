@@ -25,6 +25,13 @@
 		1A0000000000000000000034 /* AnimatedGoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000035 /* AnimatedGoalCard.swift */; };
 		1A0000000000000000000036 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000037 /* OnboardingView.swift */; };
 		1A0000000000000000000038 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000039 /* ProfileView.swift */; };
+		1A000000000000000000003A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000003B /* HomeView.swift */; };
+		1A000000000000000000003C /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000003D /* FeedPost.swift */; };
+		1A000000000000000000003E /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000003F /* HapticManager.swift */; };
+		1A0000000000000000000040 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000041 /* HomeViewModel.swift */; };
+		1A0000000000000000000042 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000043 /* GoalsViewModel.swift */; };
+		1A0000000000000000000044 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000045 /* DashboardViewModel.swift */; };
+		1A0000000000000000000046 /* LeaderboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000047 /* LeaderboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +56,13 @@
 		1A0000000000000000000035 /* AnimatedGoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGoalCard.swift; sourceTree = "<group>"; };
 		1A0000000000000000000037 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		1A0000000000000000000039 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1A000000000000000000003B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1A000000000000000000003D /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
+		1A000000000000000000003F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		1A0000000000000000000041 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1A0000000000000000000043 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
+		1A0000000000000000000045 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		1A0000000000000000000047 /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,8 @@
 				1A000000000000000000001C /* Views */,
 				1A000000000000000000001D /* Models */,
 				1A000000000000000000001E /* Theme */,
+				1A0000000000000000000048 /* ViewModels */,
+				1A0000000000000000000049 /* Utilities */,
 				1A0000000000000000000016 /* Assets.xcassets */,
 				1A0000000000000000000017 /* Info.plist */,
 			);
@@ -104,6 +120,7 @@
 				1A0000000000000000000035 /* AnimatedGoalCard.swift */,
 				1A0000000000000000000037 /* OnboardingView.swift */,
 				1A0000000000000000000039 /* ProfileView.swift */,
+				1A000000000000000000003B /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,8 +133,28 @@
 				1A0000000000000000000010 /* GoalStore.swift */,
 				1A000000000000000000002B /* Analytics.swift */,
 				1A000000000000000000002D /* Leaderboard.swift */,
+				1A000000000000000000003D /* FeedPost.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000048 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000041 /* HomeViewModel.swift */,
+				1A0000000000000000000043 /* GoalsViewModel.swift */,
+				1A0000000000000000000045 /* DashboardViewModel.swift */,
+				1A0000000000000000000047 /* LeaderboardViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000049 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1A000000000000000000003F /* HapticManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		1A000000000000000000001E /* Theme */ = {
@@ -216,6 +253,13 @@
 				1A0000000000000000000034 /* AnimatedGoalCard.swift in Sources */,
 				1A0000000000000000000036 /* OnboardingView.swift in Sources */,
 				1A0000000000000000000038 /* ProfileView.swift in Sources */,
+				1A000000000000000000003A /* HomeView.swift in Sources */,
+				1A000000000000000000003C /* FeedPost.swift in Sources */,
+				1A000000000000000000003E /* HapticManager.swift in Sources */,
+				1A0000000000000000000040 /* HomeViewModel.swift in Sources */,
+				1A0000000000000000000042 /* GoalsViewModel.swift in Sources */,
+				1A0000000000000000000044 /* DashboardViewModel.swift in Sources */,
+				1A0000000000000000000046 /* LeaderboardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
