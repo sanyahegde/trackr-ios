@@ -23,12 +23,13 @@ class LeaderboardViewModel: ObservableObject {
             let totalProgress = userGoals.map { $0.progress }.reduce(0, +)
             
             return LeaderboardEntry(
+                id: UUID(),
                 user: friend,
                 completedGoals: completed,
                 totalProgress: totalProgress,
                 rank: 0 // Will be calculated later
             )
-        }.sorted { $0.totalProgress > $1.totalProgress }
+        }.sorted(by: { $0.totalProgress > $1.totalProgress })
         
         // Assign ranks
         self.entries = entries.enumerated().map { index, entry in
