@@ -210,25 +210,43 @@ struct CreatePostView: View {
         guard !isProcessing else { return }
         isProcessing = true
         
-        let newPost = Post(
-            userId: UUID(),
-            userName: "You",
-            goalId: selectedGoal?.id,
-            goalTitle: selectedGoal?.title,
-            caption: caption,
-            imageURL: nil, // Will handle image upload in real app
-            timestamp: Date()
-        )
-        
         HapticManager.shared.impact(.medium)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            viewModel.addPost(newPost)
-            HapticManager.shared.notification(.success)
-            isProcessing = false
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                dismiss()
+        Task {
+            do {
+                // Convert UIImage to Data
+                var imageData: Data? = nil
+                if let selectedImage = selectedImage {
+                    imageData = selectedImage.jpegData(compressionQuality: 0.8)
+                }
+                
+                // Get current user ID (in real app, from auth)
+                let userId = UUID() // TODO: Get from AuthManager
+                
+                // Create post via API
+                let newPost = try await APIService.shared.createPost(
+                    userId: userId,
+                    goalId: selectedGoal?.id,
+                    goalTitle: selectedGoal?.title,
+                    caption: caption,
+                    image: imageData
+                )
+                
+                await MainActor.run {
+                    viewModel.addPost(newPost)
+                    HapticManager.shared.notification(.success)
+                    isProcessing = false
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        dismiss()
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    print("Error creating post: \(error)")
+                    HapticManager.shared.notification(.error)
+                    isProcessing = false
+                }
             }
         }
     }

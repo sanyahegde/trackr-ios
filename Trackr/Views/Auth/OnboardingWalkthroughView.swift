@@ -16,7 +16,7 @@ struct OnboardingWalkthroughView: View {
             
             TabView(selection: $currentPage) {
                 // Page 1: Track Your Goals
-                OnboardingPage(
+                OnboardingWalkthroughPage(
                     icon: "target",
                     title: "Track Your Goals",
                     description: "Set meaningful goals and track your progress with beautiful visual timelines",
@@ -25,7 +25,7 @@ struct OnboardingWalkthroughView: View {
                 .tag(0)
                 
                 // Page 2: Connect with Friends
-                OnboardingPage(
+                OnboardingWalkthroughPage(
                     icon: "person.2.fill",
                     title: "Connect with Friends",
                     description: "Share your journey and stay motivated with your community",
@@ -34,7 +34,7 @@ struct OnboardingWalkthroughView: View {
                 .tag(1)
                 
                 // Page 3: Achieve Together
-                OnboardingPage(
+                OnboardingWalkthroughPage(
                     icon: "trophy.fill",
                     title: "Achieve Together",
                     description: "Celebrate milestones and compete in friendly leaderboards",
@@ -83,7 +83,7 @@ struct OnboardingWalkthroughView: View {
     }
 }
 
-struct OnboardingPage: View {
+struct OnboardingWalkthroughPage: View {
     let icon: String
     let title: String
     let description: String
