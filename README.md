@@ -23,17 +23,23 @@ A modern iOS application built with SwiftUI for tracking goals amongst friends.
 
 ```
 trackr/
-├── TrackrApp.swift          # App entry point
-├── Models/
-│   ├── Goal.swift           # Goal data model
-│   ├── User.swift           # User data model
-│   └── GoalStore.swift      # Data management
-├── Views/
-│   ├── ContentView.swift     # Main view
-│   ├── GoalListView.swift   # List of goals
-│   ├── GoalDetailView.swift # Goal details
-│   └── AddGoalView.swift    # Add new goal
-├── Package.swift            # Swift Package Manager config
+├── Trackr.xcodeproj         # Xcode project file
+├── Trackr/                   # Main app folder
+│   ├── TrackrApp.swift      # App entry point
+│   ├── Models/
+│   │   ├── Goal.swift        # Goal data model
+│   │   ├── User.swift        # User data model
+│   │   └── GoalStore.swift  # Data management
+│   ├── Views/
+│   │   ├── ContentView.swift      # Main view
+│   │   ├── GoalListView.swift    # List of goals
+│   │   ├── GoalDetailView.swift   # Goal details
+│   │   └── AddGoalView.swift     # Add new goal
+│   ├── Theme/
+│   │   ├── VintageColors.swift   # Vintage color palette
+│   │   └── VintageStyle.swift    # Custom styling
+│   ├── Assets.xcassets       # Images and colors
+│   └── Info.plist           # iOS configuration
 └── README.md
 ```
 
@@ -45,25 +51,23 @@ trackr/
 - iOS 17.0+ deployment target
 - macOS (for development)
 
-### Setup Instructions
+### Quick Start
 
-1. **Open in Xcode**
-   ```bash
-   cd /path/to/trackr
-   open Package.swift
-   ```
+**Just open the project in Xcode!**
 
-2. **Or create an Xcode project** (recommended for full iOS development):
-   - Open Xcode
-   - Create a new project
-   - Choose "iOS" -> "App"
-   - Name it "Trackr"
-   - Choose SwiftUI interface
-   - Copy all the Swift files from this repository into your Xcode project
+```bash
+cd /path/to/trackr
+open Trackr.xcodeproj
+```
 
-3. **Run the app**
-   - Select a simulator or device
-   - Press Cmd+R to build and run
+Or simply double-click `Trackr.xcodeproj` in Finder.
+
+Then:
+1. Select a simulator (iPhone 15 Pro recommended)
+2. Press `Cmd+R` to build and run
+3. That's it! The app will launch with sample goals
+
+The project is already configured and ready to run!
 
 ## Current Features
 
@@ -74,9 +78,12 @@ trackr/
 - Delete goals by swiping
 
 ### UI Components
+- **Vintage Design**: Warm, hand-drawn aesthetic with earthy colors
+- **Georgia Font**: Classic serif typography throughout
+- **Card-Based Layout**: Elegant cards with subtle shadows
 - **Empty State**: Friendly message when no goals exist
 - **Goal Cards**: Display key information at a glance
-- **Progress Bars**: Visual progress indicators
+- **Progress Bars**: Visual progress indicators with gradients
 - **Category Tags**: Color-coded category labels
 - **Navigation**: Smooth transitions between screens
 

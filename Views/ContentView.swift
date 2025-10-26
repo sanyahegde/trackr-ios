@@ -1,13 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var goalStore: GoalStore
+    @EnvironmentObject var goalStore: GoalStore
     @State private var showingAddGoal = false
-    
-    init() {
-        let sampleUser = User(name: "You", username: "user1")
-        _goalStore = StateObject(wrappedValue: GoalStore(currentUser: sampleUser))
-    }
     
     var body: some View {
         NavigationView {

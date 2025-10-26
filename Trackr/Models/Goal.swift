@@ -1,5 +1,11 @@
 import Foundation
 
+enum PrivacyLevel: String, Codable {
+    case `private` = "Private"
+    case friends = "Friends"
+    case `public` = "Public"
+}
+
 struct Goal: Identifiable, Codable, Hashable {
     var id: UUID
     var title: String
@@ -9,8 +15,10 @@ struct Goal: Identifiable, Codable, Hashable {
     var progress: Double
     var category: String
     var owner: User
+    var privacyLevel: PrivacyLevel
+    var sharedWith: [User]
     
-    init(id: UUID = UUID(), title: String, description: String, targetDate: Date, isCompleted: Bool = false, progress: Double = 0.0, category: String = "General", owner: User) {
+    init(id: UUID = UUID(), title: String, description: String, targetDate: Date, isCompleted: Bool = false, progress: Double = 0.0, category: String = "General", owner: User, privacyLevel: PrivacyLevel = .private, sharedWith: [User] = []) {
         self.id = id
         self.title = title
         self.description = description
@@ -19,6 +27,12 @@ struct Goal: Identifiable, Codable, Hashable {
         self.progress = progress
         self.category = category
         self.owner = owner
+        self.privacyLevel = privacyLevel
+        self.sharedWith = sharedWith
+    }
+    
+    var isShared: Bool {
+        return privacyLevel != .private || !sharedWith.isEmpty
     }
     
     static func == (lhs: Goal, rhs: Goal) -> Bool {

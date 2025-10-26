@@ -4,7 +4,7 @@ import SwiftUI
 struct TrackrApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }

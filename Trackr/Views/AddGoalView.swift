@@ -8,8 +8,10 @@ struct AddGoalView: View {
     @State private var description = ""
     @State private var selectedCategory = "General"
     @State private var targetDate = Date().addingTimeInterval(86400)
+    @State private var privacyLevel: PrivacyLevel = .private
     
     let categories = ["General", "Work", "Fitness", "Learning", "Personal", "Finance"]
+    let privacyLevels: [PrivacyLevel] = [.private, .friends, .public]
     
     var body: some View {
         NavigationView {
@@ -82,6 +84,28 @@ struct AddGoalView: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 8) {
+                                Text("Privacy")
+                                    .font(.custom("Georgia", size: 14))
+                                    .foregroundColor(VintageColors.deepBrown)
+                                
+                                Picker("Privacy", selection: $privacyLevel) {
+                                    ForEach(privacyLevels, id: \.self) { privacy in
+                                        Label(privacy.rawValue, systemImage: privacyIcon(for: privacy))
+                                            .tag(privacy)
+                                            .font(.custom("Georgia", size: 16))
+                                    }
+                                }
+                                .pickerStyle(.menu)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(VintageColors.sepia.opacity(0.3), lineWidth: 2)
+                                )
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 8) {
                                 Text("Target Date")
                                     .font(.custom("Georgia", size: 14))
                                     .foregroundColor(VintageColors.deepBrown)
@@ -140,11 +164,20 @@ struct AddGoalView: View {
             description: description,
             targetDate: targetDate,
             category: selectedCategory,
-            owner: goalStore.currentUser
+            owner: goalStore.currentUser,
+            privacyLevel: privacyLevel
         )
         
         goalStore.addGoal(newGoal)
         dismiss()
+    }
+    
+    func privacyIcon(for privacy: PrivacyLevel) -> String {
+        switch privacy {
+        case .private: return "lock.fill"
+        case .friends: return "person.2.fill"
+        case .public: return "globe"
+        }
     }
 }
 
