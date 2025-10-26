@@ -11,8 +11,26 @@ class HomeFeedViewModel: ObservableObject {
     func loadFeed() {
         isLoading = true
         
-        // Mock social posts
-        let mockPosts = [
+        // Try to fetch from API first, fall back to mock data
+        Task {
+            do {
+                let fetchedPosts = try await APIService.shared.fetchPosts()
+                await MainActor.run {
+                    self.posts = fetchedPosts.isEmpty ? createMockPosts() : fetchedPosts
+                    self.isLoading = false
+                }
+            } catch {
+                print("⚠️ API not available, using mock data: \(error)")
+                await MainActor.run {
+                    self.posts = createMockPosts()
+                    self.isLoading = false
+                }
+            }
+        }
+    }
+    
+    private func createMockPosts() -> [Post] {
+        return [
             Post(
                 userId: UUID(),
                 userName: "Alex Chen",
@@ -54,11 +72,6 @@ class HomeFeedViewModel: ObservableObject {
                 comments: []
             )
         ]
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.posts = mockPosts
-            self.isLoading = false
-        }
     }
     
     func refreshFeed() async {
