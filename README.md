@@ -1,26 +1,16 @@
 # Trackr - Goal Tracking App
 
-A modern iOS application built with SwiftUI for tracking goals amongst friends.
+iOS application tracking goals amongst friends.
 
 ## Features
-
-- 📱 Beautiful vintage-inspired user interface
-- 🎯 Create and manage multiple goals
-- 📊 Interactive dashboards with Swift Charts visualization
-- 🏷️ Categorize goals by type (Work, Fitness, Learning, etc.)
-- 📅 Set target dates
-- ✅ Mark goals as completed
-- 👥 Social goal tracking amongst friends
-- 🏆 Leaderboard with top performers
-- 🔒 Privacy settings (Private, Friends, Public)
-- 📈 Analytics and progress tracking
-
-## Tech Stack
-
-- **Language**: Swift
-- **Framework**: SwiftUI
-- **Platform**: iOS 17+
-- **Architecture**: MVVM pattern
+-  Create and manage multiple goals
+-  Interactive dashboards with Swift Charts visualization
+-  Set target dates
+-  Mark goals as completed
+-  Social goal tracking amongst friends
+-  Leaderboard with top performers
+-  Privacy settings (Private, Friends, Public)
+-  Analytics and progress tracking
 
 ## Project Structure
 
