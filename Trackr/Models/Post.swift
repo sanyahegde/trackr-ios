@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct Post: Identifiable, Codable {
+struct Post: Identifiable {
     let id: UUID
     let userId: UUID
     let userName: String
@@ -13,10 +13,10 @@ struct Post: Identifiable, Codable {
     let location: PostLocation?
     let timestamp: Date
     var likes: Int
-    var claps: Int
-    var fires: Int
+    var isLiked: Bool
+    var comments: [Comment]
     
-    struct PostLocation: Codable {
+    struct PostLocation {
         let latitude: Double
         let longitude: Double
         let cityName: String
@@ -26,7 +26,7 @@ struct Post: Identifiable, Codable {
         }
     }
     
-    init(id: UUID = UUID(), userId: UUID, userName: String, profileImageURL: String? = nil, goalId: UUID?, goalTitle: String?, caption: String, imageURL: String? = nil, location: PostLocation? = nil, timestamp: Date = Date(), likes: Int = 0, claps: Int = 0, fires: Int = 0) {
+    init(id: UUID = UUID(), userId: UUID, userName: String, profileImageURL: String? = nil, goalId: UUID?, goalTitle: String?, caption: String, imageURL: String? = nil, location: PostLocation? = nil, timestamp: Date = Date(), likes: Int = 0, isLiked: Bool = false, comments: [Comment] = []) {
         self.id = id
         self.userId = userId
         self.userName = userName
@@ -38,8 +38,8 @@ struct Post: Identifiable, Codable {
         self.location = location
         self.timestamp = timestamp
         self.likes = likes
-        self.claps = claps
-        self.fires = fires
+        self.isLiked = isLiked
+        self.comments = comments
     }
 }
 
