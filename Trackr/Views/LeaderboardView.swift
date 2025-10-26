@@ -12,59 +12,77 @@ struct LeaderboardView: View {
     
     var body: some View {
         ZStack {
-            VintageColors.cream
+            Color(.systemGroupedBackground)
                 .ignoresSafeArea()
             
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Header
-                    VStack(spacing: 8) {
-                        Image(systemName: "trophy.fill")
-                            .font(.system(size: 48))
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [VintageColors.burntOrange, VintageColors.sepia],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .shadow(color: VintageColors.burntOrange.opacity(0.3), radius: 8, x: 0, y: 4)
-                        
-                        Text("Leaderboard")
-                            .font(.custom("Georgia", size: 32))
-                            .fontWeight(.bold)
-                            .foregroundColor(VintageColors.deepBrown)
-                        
-                        Text("See how your friends are doing")
-                            .font(.custom("Georgia", size: 14))
-                            .foregroundColor(VintageColors.warmGray)
-                    }
-                    .padding()
-                    .vintageCard()
-                    
-                    // Top 3 Podium
-                    if leaderboard.entries.count >= 3 {
-                        PodiumView(entries: Array(leaderboard.entries.prefix(3)))
-                    }
-                    
-                    // Full Leaderboard
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("All Rankings")
-                            .font(.custom("Georgia", size: 18))
-                            .fontWeight(.bold)
-                            .foregroundColor(VintageColors.deepBrown)
-                            .padding(.horizontal)
-                        
-                        ForEach(leaderboard.entries) { entry in
-                            LeaderboardRowView(entry: entry)
-                                .padding(.horizontal)
-                        }
+            VStack(spacing: 0) {
+                // Filter Picker
+                Picker("Filter", selection: $leaderboard.selectedFilter) {
+                    ForEach(LeaderboardFilter.allCases, id: \.self) { filter in
+                        Text(filter.rawValue).tag(filter)
                     }
                 }
+                .pickerStyle(.segmented)
                 .padding()
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // Header
+                        VStack(spacing: 8) {
+                            Image(systemName: "trophy.fill")
+                                .font(.system(size: 48))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.orange, .yellow],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .shadow(color: .orange.opacity(0.3), radius: 8, x: 0, y: 4)
+                            
+                            Text("Leaderboard")
+                                .font(.system(.title2, design: .rounded))
+                                .fontWeight(.bold)
+                            
+                            Text(leaderboard.selectedFilter.rawValue)
+                                .font(.system(.subheadline, design: .rounded))
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color(.systemBackground))
+                                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+                        )
+                        .padding(.horizontal)
+                        
+                        // Top 3 Podium
+                        if leaderboard.entries.count >= 3 {
+                            PodiumView(entries: Array(leaderboard.entries.prefix(3)))
+                                .padding(.horizontal)
+                        }
+                        
+                        // Full Leaderboard
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("All Rankings")
+                                .font(.system(.title3, design: .rounded))
+                                .fontWeight(.bold)
+                                .padding(.horizontal)
+                            
+                            ForEach(leaderboard.entries) { entry in
+                                LeaderboardRowView(entry: entry)
+                                    .padding(.horizontal)
+                            }
+                        }
+                    }
+                    .padding()
+                }
             }
         }
         .onAppear {
+            leaderboard.update(from: mockFriends, goals: goalStore.goals)
+        }
+        .onChange(of: leaderboard.selectedFilter) { _ in
             leaderboard.update(from: mockFriends, goals: goalStore.goals)
         }
         .navigationTitle("Leaderboard")

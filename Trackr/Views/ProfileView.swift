@@ -3,71 +3,232 @@ import Charts
 
 struct ProfileView: View {
     @EnvironmentObject var goalStore: GoalStore
+    @State private var showingSettings = false
+    @State private var isPublicView = false
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 24) {
-                    // Profile Header
-                    ProfileHeaderView()
+                VStack(spacing: 0) {
+                    // Gradient Header with Avatar
+                    ProfileHeaderGradientView(isPublicView: $isPublicView)
                     
-                    // Stats Grid
-                    StatsGridView(goalStore: goalStore)
-                    
-                    // Streak Section
-                    StreakView()
-                    
-                    // Recent Achievements
-                    AchievementsView()
-                    
-                    // Settings
-                    SettingsView()
+                    VStack(spacing: 20) {
+                        // Stats Grid
+                        StatsGridView(goalStore: goalStore)
+                            .padding(.top, 20)
+                        
+                        // Streak Section
+                        StreakView()
+                        
+                        // Recent Achievements
+                        AchievementsView()
+                        
+                        // Profile Settings Card
+                        ProfileSettingsCard(showingSettings: $showingSettings)
+                    }
+                    .padding()
                 }
-                .padding()
             }
             .background(Color(.systemGroupedBackground))
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingSettings = true }) {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsDetailView()
+            }
         }
     }
 }
 
-struct ProfileHeaderView: View {
+struct ProfileHeaderGradientView: View {
+    @Binding var isPublicView: Bool
+    
     var body: some View {
-        VStack(spacing: 16) {
-            // Avatar
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [Color.blue, Color.purple],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 100, height: 100)
-                
-                Image(systemName: "person.fill")
-                    .font(.system(size: 50))
-                    .foregroundColor(.white)
-            }
+        ZStack(alignment: .bottom) {
+            // Gradient background
+            LinearGradient(
+                colors: [.blue.opacity(0.8), .purple.opacity(0.6)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .frame(height: 280)
+            .ignoresSafeArea()
             
-            VStack(spacing: 4) {
-                Text("Welcome Back!")
-                    .font(.system(.title2, design: .rounded))
+            // Content
+            VStack(spacing: 16) {
+                // Avatar
+                ZStack {
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 110, height: 110)
+                    
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.blue, Color.purple],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 100, height: 100)
+                    
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 50))
+                        .foregroundColor(.white)
+                }
+                
+                VStack(spacing: 8) {
+                    Text("Welcome Back!")
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    
+                    Text("@username")
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(.white.opacity(0.8))
+                    
+                    // Privacy Toggle
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            isPublicView.toggle()
+                            HapticManager.shared.selection()
+                        }
+                    }) {
+                        HStack(spacing: 6) {
+                            Image(systemName: isPublicView ? "globe" : "lock")
+                                .font(.system(.caption, design: .rounded))
+                            Text(isPublicView ? "Public View" : "Private View")
+                                .font(.system(.caption, design: .rounded))
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(
+                            Capsule()
+                                .fill(.white.opacity(0.2))
+                        )
+                    }
+                    .padding(.top, 8)
+                }
+            }
+            .padding(.bottom, 40)
+        }
+    }
+}
+
+struct ProfileSettingsCard: View {
+    @Binding var showingSettings: Bool
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Text("Profile Settings")
+                    .font(.system(.title3, design: .rounded))
                     .fontWeight(.bold)
                 
-                Text("@username")
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(.secondary)
+                Spacer()
+            }
+            
+            VStack(spacing: 12) {
+                SettingsRow(
+                    icon: "lock.fill",
+                    title: "Privacy Settings",
+                    isToggle: false,
+                    action: { showingSettings = true },
+                    color: .blue
+                )
+                
+                SettingsRow(
+                    icon: "moon.fill",
+                    title: "Dark Mode",
+                    isToggle: true,
+                    value: .constant(false),
+                    color: .purple
+                )
+                
+                SettingsRow(
+                    icon: "bell.fill",
+                    title: "Notifications",
+                    isToggle: true,
+                    value: .constant(true),
+                    color: .orange
+                )
             }
         }
-        .frame(maxWidth: .infinity)
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
         )
+    }
+}
+
+struct SettingsDetailView: View {
+    @Environment(\.dismiss) var dismiss
+    @State private var notifications = true
+    @State private var darkMode = false
+    
+    var body: some View {
+        NavigationView {
+            List {
+                Section("Appearance") {
+                    Toggle("Dark Mode", isOn: $darkMode)
+                    
+                    Picker("Theme", selection: .constant("Default")) {
+                        Text("Default").tag("Default")
+                        Text("Warm").tag("Warm")
+                        Text("Cool").tag("Cool")
+                    }
+                }
+                
+                Section("Privacy") {
+                    Toggle("Show Profile", isOn: .constant(true))
+                    Toggle("Show Goals", isOn: .constant(false))
+                    Toggle("Show Stats", isOn: .constant(true))
+                }
+                
+                Section("Notifications") {
+                    Toggle("Goal Reminders", isOn: $notifications)
+                    Toggle("Friend Updates", isOn: .constant(true))
+                    Toggle("Achievements", isOn: .constant(true))
+                }
+                
+                Section("About") {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text("1.0.0")
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Button("Rate on App Store") {
+                        // Rate action
+                    }
+                    
+                    Button("Contact Support") {
+                        // Contact action
+                    }
+                }
+            }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
+        }
     }
 }
 
