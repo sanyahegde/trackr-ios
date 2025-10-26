@@ -49,78 +49,156 @@ struct ProfileView: View {
 
 struct ProfileHeaderGradientView: View {
     @Binding var isPublicView: Bool
+    @State private var followers = 1680
+    @State private var following = 1822
+    @State private var isFollowing = false
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            // Gradient background
-            LinearGradient(
-                colors: [.blue.opacity(0.8), .purple.opacity(0.6)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .frame(height: 280)
-            .ignoresSafeArea()
-            
-            // Content
-            VStack(spacing: 16) {
-                // Avatar
+        VStack(spacing: 0) {
+            // Header Stats
+            HStack(spacing: 0) {
+                // Profile picture with gradient border
                 ZStack {
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 110, height: 110)
-                    
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.blue, Color.purple],
+                                colors: [.blue, .purple, .pink],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .frame(width: 100, height: 100)
-                    
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 50))
-                        .foregroundColor(.white)
+                        .frame(width: 90, height: 90)
+                        .overlay(
+                            Circle()
+                                .fill(Color(.systemBackground))
+                                .frame(width: 85, height: 85)
+                                .overlay(
+                                    Circle()
+                                        .fill(
+                                            LinearGradient(
+                                                colors: colorsForName("You"),
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                .frame(width: 80, height: 80)
+                                .overlay(
+                                    Text("You".prefix(1))
+                                        .font(.system(size: 35, design: .rounded))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.white)
+                                )
+                                )
+                        )
                 }
+                .padding(.leading, 16)
                 
-                VStack(spacing: 8) {
-                    Text("Welcome Back!")
-                        .font(.system(.title2, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
+                // Follower counts
+                HStack(spacing: 28) {
+                    VStack(spacing: 4) {
+                        Text("\(followers)")
+                            .font(.system(.title3, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                        Text("Followers")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(.secondary)
+                    }
                     
-                    Text("@username")
-                        .font(.system(.subheadline, design: .rounded))
-                        .foregroundColor(.white.opacity(0.8))
+                    VStack(spacing: 4) {
+                        Text("\(following)")
+                            .font(.system(.title3, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                        Text("Following")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(.secondary)
+                    }
                     
-                    // Privacy Toggle
+                    VStack(spacing: 4) {
+                        Text("12")
+                            .font(.system(.title3, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                        Text("Goals")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.vertical, 16)
+            
+            // Username and bio
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Your Username")
+                    .font(.system(.body, design: .rounded))
+                    .fontWeight(.semibold)
+                
+                Text("Chasing consistency ✨")
+                    .font(.system(.body, design: .rounded))
+                    .foregroundColor(.secondary)
+                
+                // Action buttons
+                HStack(spacing: 8) {
                     Button(action: {
-                        withAnimation(.spring()) {
+                        withAnimation(.spring(response: 0.3)) {
                             isPublicView.toggle()
                             HapticManager.shared.selection()
                         }
                     }) {
-                        HStack(spacing: 6) {
-                            Image(systemName: isPublicView ? "globe" : "lock")
-                                .font(.system(.caption, design: .rounded))
-                            Text(isPublicView ? "Public View" : "Private View")
-                                .font(.system(.caption, design: .rounded))
+                        HStack {
+                            Image(systemName: isPublicView ? "globe" : "lock.fill")
+                            Text(isPublicView ? "Public" : "Private")
+                                .font(.system(.subheadline, design: .rounded))
                                 .fontWeight(.semibold)
                         }
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
                         .background(
-                            Capsule()
-                                .fill(.white.opacity(0.2))
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color(.systemGray5))
                         )
                     }
-                    .padding(.top, 8)
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3)) {
+                            // Add share profile action
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("Share")
+                                .font(.system(.subheadline, design: .rounded))
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color(.systemGray5))
+                        )
+                    }
                 }
             }
-            .padding(.bottom, 40)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 12)
         }
+        .background(Color(.systemBackground))
+    }
+    
+    func colorsForName(_ name: String) -> [Color] {
+        let colors: [[Color]] = [
+            [.blue, .purple],
+            [.pink, .red],
+            [.orange, .yellow],
+            [.green, .mint],
+            [.purple, .blue],
+            [.indigo, .purple]
+        ]
+        return colors[abs(name.hashValue) % colors.count]
     }
 }
 
@@ -482,4 +560,5 @@ struct SettingsRow: View {
         .buttonStyle(.plain)
     }
 }
+
 

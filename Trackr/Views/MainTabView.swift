@@ -18,38 +18,49 @@ struct MainTabView: View {
                     }
                     .tag(0)
                 
+                SearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                    .tag(1)
+                
                 ContentView()
                     .environmentObject(goalStore)
                     .tabItem {
                         Label("Goals", systemImage: "target")
                     }
-                    .tag(1)
+                    .tag(2)
                 
-                // Center button placeholder
+                DashboardView(goalStore: goalStore)
+                    .tabItem {
+                        Label("Dashboard", systemImage: "chart.bar.xaxis")
+                    }
+                    .tag(3)
+                
+                // Center button placeholder (invisible)
                 Color.clear
                     .tabItem {
                         Label("", systemImage: "")
                     }
-                    .tag(2)
+                    .tag(4)
                     .opacity(0)
                 
                 LeaderboardView(goalStore: goalStore)
                     .tabItem {
                         Label("Leaderboard", systemImage: "trophy.fill")
                     }
-                    .tag(3)
+                    .tag(5)
                 
                 ProfileView()
                     .environmentObject(goalStore)
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }
-                    .tag(4)
+                    .tag(6)
             }
             .accentColor(.blue)
             .sheet(isPresented: $showingCreatePost) {
-                // CreatePostView will be shown here
-                Text("Create Post")
+                CreatePostView(viewModel: HomeFeedViewModel())
             }
             
             // Floating create button

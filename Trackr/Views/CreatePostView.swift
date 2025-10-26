@@ -10,121 +10,181 @@ struct CreatePostView: View {
     @State private var selectedImage: UIImage?
     @State private var showLocation = false
     @State private var selectedGoal: Goal?
+    @State private var isProcessing = false
     
     let availableGoals: [Goal] = [] // Will be passed from parent
     
     var body: some View {
         NavigationView {
             ZStack {
-                Color(.systemGroupedBackground)
+                Color(.systemBackground)
                     .ignoresSafeArea()
                 
-                ScrollView {
-                    VStack(spacing: 24) {
-                        // Selected image preview
-                        if let image = selectedImage {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(height: 300)
-                                .cornerRadius(20)
-                                .overlay(
-                                    Button(action: { selectedImage = nil }) {
-                                        Image(systemName: "xmark.circle.fill")
-                                            .font(.system(size: 30))
-                                            .foregroundColor(.white)
-                                            .background(Circle().fill(Color.black.opacity(0.5)))
-                                    }
-                                    .padding(8),
-                                    alignment: .topTrailing
-                                )
-                        }
-                        
-                        // Photo picker
-                        PhotosPicker(
-                            selection: $selectedPhoto,
-                            matching: .images,
-                            photoLibrary: .shared()
-                        ) {
-                            HStack {
-                                Image(systemName: "photo.fill")
-                                    .font(.system(size: 24))
-                                
-                                Text(selectedImage == nil ? "Add Photo" : "Change Photo")
-                                    .font(.system(.body, design: .rounded))
-                            }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(LinearGradient(
-                                        colors: [.blue, .purple],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    ))
-                            )
-                        }
-                        .onChange(of: selectedPhoto) { _, newItem in
-                            Task {
-                                if let data = try? await newItem?.loadTransferable(type: Data.self),
-                                   let uiImage = UIImage(data: data) {
-                                    selectedImage = uiImage
-                                }
+                VStack(spacing: 0) {
+                    // Instagram-style split view
+                    if let image = selectedImage {
+                        // Image preview on left
+                        GeometryReader { geometry in
+                            VStack(spacing: 0) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                    .clipped()
                             }
                         }
+                        .frame(height: UIScreen.main.bounds.height * 0.5)
                         
-                        // Caption input
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("What's on your mind?")
-                                .font(.system(.headline, design: .rounded))
-                                .foregroundColor(.primary)
-                            
-                            TextField("Share your progress...", text: $caption, axis: .vertical)
-                                .font(.system(.body, design: .rounded))
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
-                                .lineLimit(3...8)
-                        }
-                        
-                        // Goal selector
-                        if !availableGoals.isEmpty {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Link to Goal")
-                                    .font(.system(.headline, design: .rounded))
-                                
-                                Picker("Goal", selection: $selectedGoal) {
-                                    Text("None").tag(Goal?.none)
-                                    ForEach(availableGoals) { goal in
-                                        Text(goal.title).tag(Optional(goal))
-                                    }
-                                }
-                                .pickerStyle(.menu)
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
-                            }
-                        }
-                        
-                        // Location toggle
-                        Toggle(isOn: $showLocation) {
-                            HStack {
-                                Image(systemName: "location.fill")
-                                    .foregroundColor(.blue)
-                                
-                                Text("Add Location")
-                                    .font(.system(.body, design: .rounded))
-                            }
-                        }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
+                        Divider()
                     }
-                    .padding()
+                    
+                    // Bottom section for controls
+                    VStack(spacing: 16) {
+                        // Top controls
+                        if let image = selectedImage {
+                            HStack {
+                                // Photo picker
+                                PhotosPicker(
+                                    selection: $selectedPhoto,
+                                    matching: .images
+                                ) {
+                                    HStack(spacing: 8) {
+                                        Image(systemName: "photo")
+                                        Text("Change Photo")
+                                    }
+                                    .font(.system(.body, design: .rounded))
+                                }
+                                
+                                Spacer()
+                                
+                                Button(action: { 
+                                    withAnimation(.spring()) {
+                                        selectedImage = nil 
+                                    }
+                                }) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
+                            }
+                            .padding(.horizontal)
+                        } else {
+                            // Initial photo picker button
+                            PhotosPicker(
+                                selection: $selectedPhoto,
+                                matching: .images
+                            ) {
+                                VStack(spacing: 12) {
+                                    Image(systemName: "photo.on.rectangle")
+                                        .font(.system(size: 60))
+                                        .foregroundColor(.blue)
+                                    
+                                    Text("Choose Photo")
+                                        .font(.system(.title3, design: .rounded))
+                                        .fontWeight(.semibold)
+                                    
+                                    Text("Share a moment from your goal journey")
+                                        .font(.system(.subheadline, design: .rounded))
+                                        .foregroundColor(.secondary)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(40)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(20)
+                            }
+                            .padding()
+                        }
+                        
+                        ScrollView {
+                            VStack(spacing: 16) {
+                                // Caption input
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack {
+                                        Image(systemName: "text.bubble")
+                                            .foregroundColor(.blue)
+                                        Text("Write a caption")
+                                            .font(.system(.headline, design: .rounded))
+                                    }
+                                    
+                                    TextField("What's on your mind?", text: $caption, axis: .vertical)
+                                        .font(.system(.body, design: .rounded))
+                                        .padding()
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(12)
+                                        .lineLimit(4...10)
+                                }
+                                .padding(.horizontal)
+                                
+                                // Goal selector
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack {
+                                        Image(systemName: "target")
+                                            .foregroundColor(.orange)
+                                        Text("Link to Goal")
+                                            .font(.system(.headline, design: .rounded))
+                                    }
+                                    
+                                    Picker("Goal", selection: $selectedGoal) {
+                                        Text("None").tag(Goal?.none)
+                                        ForEach(availableGoals) { goal in
+                                            Text(goal.title).tag(Optional(goal))
+                                        }
+                                    }
+                                    .pickerStyle(.menu)
+                                    .padding()
+                                    .background(Color(.systemGray6))
+                                    .cornerRadius(12)
+                                }
+                                .padding(.horizontal)
+                                
+                                // Location toggle
+                                Toggle(isOn: $showLocation) {
+                                    HStack {
+                                        Image(systemName: "location.fill")
+                                            .foregroundColor(.red)
+                                        Text("Tag Location")
+                                            .font(.system(.body, design: .rounded))
+                                    }
+                                }
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(12)
+                                .padding(.horizontal)
+                                
+                                // Post button
+                                Button(action: {
+                                    createPost()
+                                }) {
+                                    HStack {
+                                        if isProcessing {
+                                            ProgressView()
+                                                .progressViewStyle(.circular)
+                                                .tint(.white)
+                                        } else {
+                                            Text("Post")
+                                                .font(.system(.headline, design: .rounded))
+                                                .fontWeight(.semibold)
+                                        }
+                                    }
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(selectedImage != nil || !caption.isEmpty ? 
+                                                  LinearGradient(colors: [.blue, .purple], startPoint: .leading, endPoint: .trailing) : 
+                                                  LinearGradient(colors: [.gray], startPoint: .leading, endPoint: .trailing))
+                                    )
+                                }
+                                .disabled(isProcessing || (selectedImage == nil && caption.isEmpty))
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                            }
+                        }
+                    }
+                    .background(Color(.systemBackground))
                 }
             }
-            .navigationTitle("Create Post")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -132,19 +192,24 @@ struct CreatePostView: View {
                         dismiss()
                     }
                 }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Post") {
-                        createPost()
+            }
+            .onChange(of: selectedPhoto) { _, newItem in
+                Task {
+                    if let data = try? await newItem?.loadTransferable(type: Data.self),
+                       let uiImage = UIImage(data: data) {
+                        withAnimation {
+                            selectedImage = uiImage
+                        }
                     }
-                    .fontWeight(.semibold)
-                    .disabled(caption.isEmpty && selectedImage == nil)
                 }
             }
         }
     }
     
     private func createPost() {
+        guard !isProcessing else { return }
+        isProcessing = true
+        
         let newPost = Post(
             userId: UUID(),
             userName: "You",
@@ -155,11 +220,16 @@ struct CreatePostView: View {
             timestamp: Date()
         )
         
-        viewModel.addPost(newPost)
-        HapticManager.shared.notification(.success)
+        HapticManager.shared.impact(.medium)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            viewModel.addPost(newPost)
+            HapticManager.shared.notification(.success)
+            isProcessing = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                dismiss()
+            }
         }
     }
 }

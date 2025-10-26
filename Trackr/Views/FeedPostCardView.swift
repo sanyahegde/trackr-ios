@@ -340,37 +340,3 @@ struct UserProfileView: View {
     }
 }
 
-struct GoalPreviewCard: View {
-    let goal: Goal
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(goal.title)
-                .font(.system(.headline, design: .rounded))
-            
-            ProgressView(value: goal.progress)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-            
-            HStack {
-                Text(goal.category)
-                    .font(.system(.caption, design: .rounded))
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Capsule().fill(Color.blue.opacity(0.1)))
-                
-                Spacer()
-                
-                Text("\(Int(goal.progress * 100))%")
-                    .font(.system(.caption, design: .rounded))
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemGray6))
-        )
-        .padding(.horizontal)
-    }
-}
-
