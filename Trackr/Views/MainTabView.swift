@@ -25,8 +25,14 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Leaderboard", systemImage: "trophy.fill")
                 }
+            
+            ProfileView()
+                .environmentObject(goalStore)
+                .tabItem {
+                    Label("Profile", systemImage: "person.fill")
+                }
         }
-        .accentColor(VintageColors.burntOrange)
+        .accentColor(.blue)
     }
 }
 

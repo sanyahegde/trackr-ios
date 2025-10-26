@@ -46,15 +46,15 @@ struct DashboardHeaderView: View {
     var body: some View {
         VStack(spacing: 16) {
             HStack(spacing: 20) {
-                StatCard(
-                    title: "Total Goals",
+                DashboardStatCard(
+                    label: "Total Goals",
                     value: "\(analytics.totalGoals)",
                     icon: "target",
                     color: VintageColors.burntOrange
                 )
                 
-                StatCard(
-                    title: "Completed",
+                DashboardStatCard(
+                    label: "Completed",
                     value: "\(analytics.completedGoals)",
                     icon: "checkmark.circle.fill",
                     color: VintageColors.forestGreen
@@ -62,15 +62,15 @@ struct DashboardHeaderView: View {
             }
             
             HStack(spacing: 20) {
-                StatCard(
-                    title: "In Progress",
+                DashboardStatCard(
+                    label: "In Progress",
                     value: "\(analytics.inProgressGoals)",
                     icon: "clock.fill",
                     color: VintageColors.dustyBlue
                 )
                 
-                StatCard(
-                    title: "Avg Progress",
+                DashboardStatCard(
+                    label: "Avg Progress",
                     value: "\(Int(analytics.averageProgress * 100))%",
                     icon: "chart.bar.fill",
                     color: VintageColors.sageGreen
@@ -80,8 +80,8 @@ struct DashboardHeaderView: View {
     }
 }
 
-struct StatCard: View {
-    let title: String
+struct DashboardStatCard: View {
+    let label: String
     let value: String
     let icon: String
     let color: Color
@@ -98,7 +98,7 @@ struct StatCard: View {
                 .fontWeight(.bold)
                 .foregroundColor(VintageColors.deepBrown)
             
-            Text(title)
+            Text(label)
                 .font(.custom("Georgia", size: 12))
                 .foregroundColor(VintageColors.warmGray)
         }

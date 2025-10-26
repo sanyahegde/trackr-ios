@@ -7,8 +7,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Vintage background
-                VintageColors.cream
+                Color(.systemGroupedBackground)
                     .ignoresSafeArea()
                 
                 VStack {
@@ -19,22 +18,20 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("Trackr")
+            .navigationTitle("Goals")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingAddGoal = true }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
-                            .foregroundColor(VintageColors.burntOrange)
-                            .shadow(color: VintageColors.burntOrange.opacity(0.3), radius: 4)
+                            .foregroundColor(.blue)
                     }
                 }
             }
             .sheet(isPresented: $showingAddGoal) {
                 AddGoalView(goalStore: goalStore)
             }
-            .accentColor(VintageColors.burntOrange)
         }
     }
 }
@@ -44,23 +41,29 @@ struct EmptyGoalsView: View {
         VStack(spacing: 24) {
             ZStack {
                 Circle()
-                    .fill(VintageColors.sepia.opacity(0.1))
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
                     .frame(width: 120, height: 120)
                 
                 Image(systemName: "target")
                     .font(.system(size: 60))
-                    .foregroundColor(VintageColors.burntOrange)
+                    .foregroundColor(.blue)
             }
             
             VStack(spacing: 8) {
                 Text("No Goals Yet")
-                    .font(.custom("Georgia", size: 24))
+                    .font(.system(.title2, design: .rounded))
                     .fontWeight(.bold)
-                    .foregroundColor(VintageColors.deepBrown)
+                    .foregroundColor(.primary)
                 
-                Text("Add your first goal to get started!")
-                    .font(.custom("Georgia", size: 16))
-                    .foregroundColor(VintageColors.warmGray)
+                Text("Tap the + button to add your first goal!")
+                    .font(.system(.body, design: .rounded))
+                    .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
             }
         }

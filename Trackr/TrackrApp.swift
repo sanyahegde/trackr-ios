@@ -2,9 +2,15 @@ import SwiftUI
 
 @main
 struct TrackrApp: App {
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            if hasSeenOnboarding {
+                MainTabView()
+            } else {
+                OnboardingView(hasSeenOnboarding: $hasSeenOnboarding)
+            }
         }
     }
 }
