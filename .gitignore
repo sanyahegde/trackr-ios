@@ -1,5 +1,5 @@
 # Xcode
-*.xcodeproj
+# *.xcodeproj  # Commented out to track the project
 xcuserdata/
 *.xcworkspace
 !default.xcworkspace
