@@ -4,13 +4,16 @@ A modern iOS application built with SwiftUI for tracking goals amongst friends.
 
 ## Features
 
-- 📱 Clean and intuitive user interface
+- 📱 Beautiful vintage-inspired user interface
 - 🎯 Create and manage multiple goals
-- 📊 Track progress with visual indicators
+- 📊 Interactive dashboards with Swift Charts visualization
 - 🏷️ Categorize goals by type (Work, Fitness, Learning, etc.)
 - 📅 Set target dates
 - ✅ Mark goals as completed
-- 👥 Social features (coming soon)
+- 👥 Social goal tracking amongst friends
+- 🏆 Leaderboard with top performers
+- 🔒 Privacy settings (Private, Friends, Public)
+- 📈 Analytics and progress tracking
 
 ## Tech Stack
 
@@ -100,16 +103,36 @@ To integrate with PostgreSQL:
 4. **Authentication**: Add user login and authentication
 5. **Social Features**: Implement friend connections and shared goals
 
+## New Features Added ✨
+
+### Interactive Dashboards
+- **Statistics Cards**: Total goals, completed, in progress, average progress
+- **Charts**: Bar charts for goal completion and category distribution  
+- **Progress Rings**: Visual completion rate indicators
+- **Top Categories**: See your most focused areas
+
+### Leaderboard
+- **Podium View**: Top 3 performers with trophy/crown icons
+- **Rankings**: See how you compare to friends
+- **Stats**: Completed goals and progress tracking
+- **Social Competition**: Gamification to increase engagement
+
+### Social Features
+- **Privacy Levels**: Set goals as Private, Friends-only, or Public
+- **Shared Goals**: Collaborate with friends on objectives
+- **Friend Comparisons**: See friend progress and rankings
+- **Social Engagement**: Built to support 500+ users
+
 ## Future Enhancements
 
 - [ ] Backend integration with PostgreSQL
 - [ ] User authentication
-- [ ] Friend connections
-- [ ] Shared goals
+- [ ] Real-time friend connections (currently using mock data)
 - [ ] Push notifications
 - [ ] Achievements and rewards
-- [ ] Dark mode support
+- [ ] Group goals (multiple collaborators)
 - [ ] iCloud sync
+- [ ] Export data as PDF reports
 
 ## License
 
