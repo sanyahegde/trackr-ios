@@ -1,8 +1,14 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var viewModel = HomeViewModel()
-    @State private var showingNewGoal = false
+    var body: some View {
+        HomeFeedView()
+    }
+}
+
+struct HomeFeedView: View {
+    @StateObject private var viewModel = HomeFeedViewModel()
+    @State private var showingCreatePost = false
     
     var body: some View {
         NavigationView {
