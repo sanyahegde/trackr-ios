@@ -1,0 +1,57 @@
+# Xcode
+*.xcodeproj
+xcuserdata/
+*.xcworkspace
+!default.xcworkspace
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods
+Pods/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Carthage
+Carthage/Build/
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Build generated
+*.o
+*.pyc
+*.swiftdeps
+*.moved-aside
+*.hmap
+*.ipa
+
+# TypeScript
+*.js
+*.map
+
+# Backup files
+*~.nib
+*.swp
+*.bak
+
+# Misc
+*.classpath
+*.project
+.settings/
+bin/
+
+# AppCode
+.idea/
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
