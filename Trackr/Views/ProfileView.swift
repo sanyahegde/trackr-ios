@@ -438,56 +438,6 @@ struct AchievementRow: View {
     }
 }
 
-struct SettingsView: View {
-    @State private var notifications = true
-    @State private var darkMode = false
-    @State private var showAbout = false
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Settings")
-                .font(.system(.title3, design: .rounded))
-                .fontWeight(.bold)
-            
-            VStack(spacing: 12) {
-                SettingsRow(
-                    icon: "bell.fill",
-                    title: "Notifications",
-                    isToggle: true,
-                    value: $notifications,
-                    color: .blue
-                )
-                
-                SettingsRow(
-                    icon: "moon.fill",
-                    title: "Dark Mode",
-                    isToggle: true,
-                    value: $darkMode,
-                    color: .purple
-                )
-                
-                SettingsRow(
-                    icon: "info.circle.fill",
-                    title: "About Trackr",
-                    isToggle: false,
-                    action: { showAbout = true },
-                    color: .gray
-                )
-            }
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
-        )
-        .sheet(isPresented: $showAbout) {
-            AboutView()
-        }
-    }
-}
-
 struct SettingsRow: View {
     let icon: String
     let title: String
@@ -530,46 +480,6 @@ struct SettingsRow: View {
             }
         }
         .buttonStyle(.plain)
-    }
-}
-
-struct AboutView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        NavigationView {
-            VStack(spacing: 24) {
-                Image(systemName: "target")
-                    .font(.system(size: 80))
-                    .foregroundColor(.blue)
-                
-                Text("Trackr")
-                    .font(.system(.largeTitle, design: .rounded))
-                    .fontWeight(.bold)
-                
-                Text("Version 1.0.0")
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(.secondary)
-                
-                Text("Track your goals and achieve great things with friends.")
-                    .font(.system(.body, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.secondary)
-                    .padding()
-                
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("About")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            }
-        }
     }
 }
 

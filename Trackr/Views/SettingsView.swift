@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SettingsView: View {
+struct MainSettingsView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     @State private var notifications = true

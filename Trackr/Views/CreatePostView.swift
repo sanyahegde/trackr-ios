@@ -148,6 +148,7 @@ struct CreatePostView: View {
         let newPost = Post(
             userId: UUID(),
             userName: "You",
+            goalId: selectedGoal?.id,
             goalTitle: selectedGoal?.title,
             caption: caption,
             imageURL: nil, // Will handle image upload in real app
