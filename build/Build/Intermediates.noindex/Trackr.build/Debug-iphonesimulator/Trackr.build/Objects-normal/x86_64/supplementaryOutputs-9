@@ -1,0 +1,18 @@
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/SettingsView.swift":
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/SettingsView.swiftdeps"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/SettingsView.swiftconstvalues"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/SettingsView.dia"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/SettingsView.d"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/SettingsView.o"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/FeedPostCardView.swift":
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPostCardView.d"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPostCardView.swiftdeps"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPostCardView.swiftconstvalues"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPostCardView.dia"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPostCardView.o"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Models/Comment.swift":
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Comment.o"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Comment.swiftconstvalues"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Comment.swiftdeps"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Comment.dia"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Comment.d"

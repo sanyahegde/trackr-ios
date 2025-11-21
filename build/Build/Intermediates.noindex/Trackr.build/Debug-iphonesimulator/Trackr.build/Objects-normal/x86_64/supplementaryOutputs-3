@@ -1,0 +1,24 @@
+"/Users/sanyahegde/Desktop/trackr/Trackr/Models/Analytics.swift":
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Analytics.d"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Analytics.swiftdeps"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Analytics.swiftconstvalues"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Analytics.o"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Analytics.dia"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Models/Leaderboard.swift":
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Leaderboard.swiftconstvalues"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Leaderboard.d"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Leaderboard.dia"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Leaderboard.o"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/Leaderboard.swiftdeps"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Theme/VintageColors.swift":
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageColors.swiftdeps"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageColors.d"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageColors.dia"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageColors.swiftconstvalues"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageColors.o"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Theme/VintageStyle.swift":
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageStyle.swiftconstvalues"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageStyle.o"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageStyle.d"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageStyle.dia"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/VintageStyle.swiftdeps"

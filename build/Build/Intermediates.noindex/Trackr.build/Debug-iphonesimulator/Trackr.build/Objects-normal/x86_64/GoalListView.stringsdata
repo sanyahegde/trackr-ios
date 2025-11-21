@@ -1,0 +1,16 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/GoalListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Progress"
+      },
+      {
+        "comment": "",
+        "key": "%lld%%"
+      }
+    ]
+  },
+  "version": 1
+}

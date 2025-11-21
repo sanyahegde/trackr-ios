@@ -1,0 +1,24 @@
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/LeaderboardView.swift":
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/LeaderboardView.swiftdeps"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/LeaderboardView.d"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/LeaderboardView.o"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/LeaderboardView.dia"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/LeaderboardView.swiftconstvalues"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/DashboardView.swift":
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/DashboardView.swiftconstvalues"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/DashboardView.d"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/DashboardView.swiftdeps"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/DashboardView.o"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/DashboardView.dia"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/AnimatedGoalCard.swift":
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/AnimatedGoalCard.d"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/AnimatedGoalCard.o"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/AnimatedGoalCard.swiftconstvalues"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/AnimatedGoalCard.swiftdeps"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/AnimatedGoalCard.dia"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/MainTabView.swift":
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/MainTabView.o"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/MainTabView.dia"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/MainTabView.d"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/MainTabView.swiftconstvalues"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/MainTabView.swiftdeps"

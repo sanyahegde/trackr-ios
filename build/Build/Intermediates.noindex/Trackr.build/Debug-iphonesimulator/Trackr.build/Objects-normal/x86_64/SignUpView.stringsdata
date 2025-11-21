@@ -1,0 +1,44 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/Auth/SignUpView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "By signing up, you agree to our Terms of Service and Privacy Policy"
+      },
+      {
+        "comment": "",
+        "key": "Create Your Account"
+      },
+      {
+        "comment": "",
+        "key": "Start achieving your goals today"
+      },
+      {
+        "comment": "",
+        "key": "Full Name"
+      },
+      {
+        "comment": "",
+        "key": "Email"
+      },
+      {
+        "comment": "",
+        "key": "Password"
+      },
+      {
+        "comment": "",
+        "key": "Confirm Password"
+      },
+      {
+        "comment": "",
+        "key": "Sign Up"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

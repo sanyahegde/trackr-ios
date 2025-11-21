@@ -41,7 +41,7 @@ struct ProfileView: View {
                 }
             }
             .sheet(isPresented: $showingSettings) {
-                SettingsDetailView()
+                MainSettingsView()
             }
         }
     }
@@ -204,6 +204,16 @@ struct ProfileHeaderGradientView: View {
 
 struct ProfileSettingsCard: View {
     @Binding var showingSettings: Bool
+    @AppStorage("preferredColorScheme") private var preferredColorScheme = 0
+    
+    private var darkModeBinding: Binding<Bool> {
+        Binding(
+            get: { preferredColorScheme == 2 },
+            set: { newValue in
+                preferredColorScheme = newValue ? 2 : 1
+            }
+        )
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -228,7 +238,7 @@ struct ProfileSettingsCard: View {
                     icon: "moon.fill",
                     title: "Dark Mode",
                     isToggle: true,
-                    value: .constant(false),
+                    value: darkModeBinding,
                     color: .purple
                 )
                 
@@ -252,19 +262,28 @@ struct ProfileSettingsCard: View {
 
 struct SettingsDetailView: View {
     @Environment(\.dismiss) var dismiss
+    @AppStorage("preferredColorScheme") private var preferredColorScheme = 0
     @State private var notifications = true
-    @State private var darkMode = false
+    
+    private var darkModeBinding: Binding<Bool> {
+        Binding(
+            get: { preferredColorScheme == 2 },
+            set: { newValue in
+                preferredColorScheme = newValue ? 2 : 1
+            }
+        )
+    }
     
     var body: some View {
         NavigationView {
             List {
                 Section("Appearance") {
-                    Toggle("Dark Mode", isOn: $darkMode)
+                    Toggle("Dark Mode", isOn: darkModeBinding)
                     
-                    Picker("Theme", selection: .constant("Default")) {
-                        Text("Default").tag("Default")
-                        Text("Warm").tag("Warm")
-                        Text("Cool").tag("Cool")
+                    Picker("Color Scheme", selection: $preferredColorScheme) {
+                        Text("Auto").tag(0)
+                        Text("Light").tag(1)
+                        Text("Dark").tag(2)
                     }
                 }
                 

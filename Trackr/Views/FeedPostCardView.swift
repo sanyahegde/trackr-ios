@@ -7,9 +7,13 @@ struct FeedPostCardView: View {
     @State private var showComments = false
     @State private var comments: [Comment]
     @State private var showingUserProfile = false
+    @State private var commentText = ""
+    @State private var isPostingComment = false
+    weak var viewModel: HomeFeedViewModel?
     
-    init(post: Post) {
+    init(post: Post, viewModel: HomeFeedViewModel? = nil) {
         self.post = post
+        self.viewModel = viewModel
         _isLiked = State(initialValue: post.isLiked)
         _likeCount = State(initialValue: post.likes)
         _comments = State(initialValue: post.comments)
@@ -126,12 +130,8 @@ struct FeedPostCardView: View {
                 }
                 .buttonStyle(.plain)
                 
-                Button(action: {}) {
-                    Image(systemName: "paperplane")
-                        .font(.system(size: 24))
-                        .foregroundColor(.primary)
-                }
-                .buttonStyle(.plain)
+                ShareButton(post: post)
+                    .buttonStyle(.plain)
                 
                 Spacer()
             }
@@ -160,19 +160,54 @@ struct FeedPostCardView: View {
             }
             
             // Add comment field
-            HStack(spacing: 12) {
-                Circle()
-                    .fill(Color.gray.opacity(0.3))
-                    .frame(width: 32, height: 32)
-                
-                Text("Add a comment...")
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(.secondary)
-                
-                Spacer()
+            if showComments {
+                HStack(spacing: 12) {
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [.blue, .purple],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 32, height: 32)
+                        .overlay(
+                            Text("Y")
+                                .font(.system(.caption, design: .rounded))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        )
+                    
+                    HStack(spacing: 8) {
+                        TextField("Add a comment...", text: $commentText, axis: .vertical)
+                            .textFieldStyle(.plain)
+                            .font(.system(.body, design: .rounded))
+                            .lineLimit(1...4)
+                        
+                        if !commentText.isEmpty {
+                            Button(action: postComment) {
+                                if isPostingComment {
+                                    ProgressView()
+                                        .progressViewStyle(.circular)
+                                        .scaleEffect(0.8)
+                                } else {
+                                    Text("Post")
+                                        .font(.system(.subheadline, design: .rounded))
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .disabled(isPostingComment || commentText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(20)
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 12)
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 12)
         }
         .background(Color(.systemBackground))
         .cornerRadius(0)
@@ -191,6 +226,51 @@ struct FeedPostCardView: View {
             isLiked.toggle()
         }
         HapticManager.shared.impact(.light)
+    }
+    
+    func postComment() {
+        guard !commentText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        guard !isPostingComment else { return }
+        
+        isPostingComment = true
+        HapticManager.shared.impact(.light)
+        
+        // Get current user info
+        let currentUserId = UUID(uuidString: "00000000-0000-0000-0000-000000000001") ?? UUID()
+        let currentUserName = "You"
+        
+        // Create new comment
+        let newComment = Comment(
+            userId: currentUserId,
+            userName: currentUserName,
+            text: commentText.trimmingCharacters(in: .whitespacesAndNewlines),
+            timestamp: Date(),
+            likes: 0
+        )
+        
+        // Add comment to list
+        withAnimation(.spring(response: 0.3)) {
+            comments.append(newComment)
+            commentText = ""
+        }
+        
+        // Show comments if not already shown
+        if !showComments {
+            showComments = true
+        }
+        
+        // Update post in view model if available
+        if let viewModel = viewModel {
+            // Update the post in the feed
+            if let postIndex = viewModel.posts.firstIndex(where: { $0.id == post.id }) {
+                var updatedPost = viewModel.posts[postIndex]
+                updatedPost.comments.append(newComment)
+                viewModel.updatePost(updatedPost)
+            }
+        }
+        
+        isPostingComment = false
+        HapticManager.shared.notification(.success)
     }
     
     func colorsForName(_ name: String) -> [Color] {

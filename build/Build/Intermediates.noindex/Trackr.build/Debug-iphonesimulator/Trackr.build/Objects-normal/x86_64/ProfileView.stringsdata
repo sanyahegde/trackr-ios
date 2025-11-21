@@ -1,0 +1,168 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/ProfileView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Followers"
+      },
+      {
+        "comment": "",
+        "key": "Following"
+      },
+      {
+        "comment": "",
+        "key": "12"
+      },
+      {
+        "comment": "",
+        "key": "Goals"
+      },
+      {
+        "comment": "",
+        "key": "Your Username"
+      },
+      {
+        "comment": "",
+        "key": "Chasing consistency ✨"
+      },
+      {
+        "comment": "",
+        "key": "Public"
+      },
+      {
+        "comment": "",
+        "key": "Private"
+      },
+      {
+        "comment": "",
+        "key": "Share"
+      },
+      {
+        "comment": "",
+        "key": "Profile Settings"
+      },
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Appearance"
+      },
+      {
+        "comment": "",
+        "key": "Privacy"
+      },
+      {
+        "comment": "",
+        "key": "Notifications"
+      },
+      {
+        "comment": "",
+        "key": "About"
+      },
+      {
+        "comment": "",
+        "key": "Dark Mode"
+      },
+      {
+        "comment": "",
+        "key": "Theme"
+      },
+      {
+        "comment": "",
+        "key": "Default"
+      },
+      {
+        "comment": "",
+        "key": "Warm"
+      },
+      {
+        "comment": "",
+        "key": "Cool"
+      },
+      {
+        "comment": "",
+        "key": "Show Profile"
+      },
+      {
+        "comment": "",
+        "key": "Show Goals"
+      },
+      {
+        "comment": "",
+        "key": "Show Stats"
+      },
+      {
+        "comment": "",
+        "key": "Goal Reminders"
+      },
+      {
+        "comment": "",
+        "key": "Friend Updates"
+      },
+      {
+        "comment": "",
+        "key": "Achievements"
+      },
+      {
+        "comment": "",
+        "key": "Rate on App Store"
+      },
+      {
+        "comment": "",
+        "key": "Contact Support"
+      },
+      {
+        "comment": "",
+        "key": "Version"
+      },
+      {
+        "comment": "",
+        "key": "1.0.0"
+      },
+      {
+        "comment": "",
+        "key": "Done"
+      },
+      {
+        "comment": "",
+        "key": "Your Streak"
+      },
+      {
+        "comment": "",
+        "key": "M"
+      },
+      {
+        "comment": "",
+        "key": "T"
+      },
+      {
+        "comment": "",
+        "key": "W"
+      },
+      {
+        "comment": "",
+        "key": "F"
+      },
+      {
+        "comment": "",
+        "key": "S"
+      },
+      {
+        "comment": "",
+        "key": "Recent Achievements"
+      },
+      {
+        "comment": "",
+        "key": ""
+      }
+    ]
+  },
+  "version": 1
+}

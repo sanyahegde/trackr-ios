@@ -11,23 +11,29 @@ struct HomeFeedView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(.systemGroupedBackground)
-                    .ignoresSafeArea()
+                AppGradientBackground()
                 
                 if viewModel.isLoading && viewModel.posts.isEmpty {
-                    ProgressView()
-                        .scaleEffect(1.5)
+                    VStack(spacing: AppSpacing.lg) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: AppColors.primaryCoral))
+                            .scaleEffect(1.2)
+                        Text("Loading your feed...")
+                            .font(AppTypography.callout())
+                            .foregroundColor(AppColors.textSecondary)
+                    }
                 } else if viewModel.posts.isEmpty {
                     EmptyFeedView()
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 20) {
+                        LazyVStack(spacing: AppSpacing.lg) {
                             ForEach(viewModel.posts) { post in
-                                FeedPostCardView(post: post)
+                                FeedPostCardView(post: post, viewModel: viewModel)
                                     .transition(.move(edge: .top).combined(with: .opacity))
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, AppSpacing.md)
+                        .padding(.vertical, AppSpacing.md)
                     }
                     .refreshable {
                         await viewModel.refreshFeed()
@@ -72,28 +78,19 @@ struct LocationPreviewView: View {
 
 struct EmptyFeedView: View {
     var body: some View {
-        VStack(spacing: 24) {
-            Image(systemName: "sparkles")
-                .font(.system(size: 60))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [.blue, .purple],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+        VStack(spacing: AppSpacing.xl) {
+            AppLogo(size: 80)
             
-            VStack(spacing: 8) {
+            VStack(spacing: AppSpacing.sm) {
                 Text("Welcome to Trackr!")
-                    .font(.system(.title2, design: .rounded))
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
+                    .font(AppTypography.title2(weight: .bold))
+                    .foregroundColor(AppColors.textPrimary)
                 
-                Text("Start by sharing your goals and cheering on your friends!")
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(.secondary)
+                Text("Start sharing your goals and cheering on your friends!")
+                    .font(AppTypography.body())
+                    .foregroundColor(AppColors.textSecondary)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+                    .padding(.horizontal, AppSpacing.lg)
             }
         }
     }

@@ -1,0 +1,24 @@
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/OnboardingView.swift":
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/OnboardingView.dia"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/OnboardingView.o"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/OnboardingView.swiftconstvalues"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/OnboardingView.d"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/OnboardingView.swiftdeps"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Models/FeedPost.swift":
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPost.dia"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPost.swiftconstvalues"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPost.o"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPost.d"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/FeedPost.swiftdeps"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/HomeView.swift":
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/HomeView.d"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/HomeView.o"
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/HomeView.swiftconstvalues"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/HomeView.swiftdeps"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/HomeView.dia"
+"/Users/sanyahegde/Desktop/trackr/Trackr/Views/ProfileView.swift":
+  const-values: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/ProfileView.swiftconstvalues"
+  dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/ProfileView.d"
+  object: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/ProfileView.o"
+  diagnostics: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/ProfileView.dia"
+  swift-dependencies: "/Users/sanyahegde/Desktop/trackr/build/Build/Intermediates.noindex/Trackr.build/Debug-iphonesimulator/Trackr.build/Objects-normal/x86_64/ProfileView.swiftdeps"

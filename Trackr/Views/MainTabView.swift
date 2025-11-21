@@ -31,34 +31,29 @@ struct MainTabView: View {
                     }
                     .tag(2)
                 
+                // Combined Dashboard & Leaderboard
                 DashboardView(goalStore: goalStore)
                     .tabItem {
-                        Label("Dashboard", systemImage: "chart.bar.xaxis")
+                        Label("Stats", systemImage: "chart.bar.fill")
                     }
                     .tag(3)
-                
-                // Center button placeholder (invisible)
-                Color.clear
-                    .tabItem {
-                        Label("", systemImage: "")
-                    }
-                    .tag(4)
-                    .opacity(0)
-                
-                LeaderboardView(goalStore: goalStore)
-                    .tabItem {
-                        Label("Leaderboard", systemImage: "trophy.fill")
-                    }
-                    .tag(5)
                 
                 ProfileView()
                     .environmentObject(goalStore)
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }
-                    .tag(6)
+                    .tag(4)
+                
+                // Messages/Notifications Tab
+                MessagesView()
+                    .tabItem {
+                        Label("Messages", systemImage: "message.fill")
+                    }
+                    .tag(5)
+                    .badge(NotificationService.shared.unreadCount)
             }
-            .accentColor(.blue)
+            .accentColor(AppColors.primaryCoral)
             .sheet(isPresented: $showingCreatePost) {
                 CreatePostView(viewModel: HomeFeedViewModel())
             }
@@ -74,15 +69,14 @@ struct MainTabView: View {
                     }) {
                         ZStack {
                             Circle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.blue, .purple],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
+                                .fill(AppColors.gradientPrimary)
                                 .frame(width: 56, height: 56)
-                                .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
+                                .shadow(
+                                    color: AppColors.primaryCoral.opacity(0.4),
+                                    radius: 12,
+                                    x: 0,
+                                    y: 6
+                                )
                             
                             Image(systemName: "plus")
                                 .font(.system(size: 24, weight: .bold))

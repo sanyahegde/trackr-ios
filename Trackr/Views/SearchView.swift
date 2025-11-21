@@ -3,24 +3,8 @@ import SwiftUI
 struct SearchView: View {
     @State private var searchText = ""
     @State private var users: [User] = []
-    
-    let mockUsers = [
-        User(name: "Alex Chen", username: "alexchen"),
-        User(name: "Sarah Johnson", username: "sarahj"),
-        User(name: "Jordan Miller", username: "jordanm"),
-        User(name: "Emma Davis", username: "emmad"),
-        User(name: "Michael Brown", username: "michaelb")
-    ]
-    
-    var filteredUsers: [User] {
-        if searchText.isEmpty {
-            return mockUsers
-        }
-        return mockUsers.filter { user in
-            user.username.localizedCaseInsensitiveContains(searchText) ||
-            user.name.localizedCaseInsensitiveContains(searchText)
-        }
-    }
+    @State private var isLoading = false
+    @State private var errorMessage: String?
     
     var body: some View {
         NavigationView {
@@ -32,6 +16,11 @@ struct SearchView: View {
                     
                     TextField("Search", text: $searchText)
                         .font(.system(.body, design: .rounded))
+                        .onChange(of: searchText) { _, newValue in
+                            Task {
+                                await performSearch(query: newValue)
+                            }
+                        }
                 }
                 .padding(12)
                 .background(
@@ -43,12 +32,37 @@ struct SearchView: View {
                 
                 // Results
                 ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(filteredUsers) { user in
-                            NavigationLink(destination: UserProfileDetailView(user: user)) {
-                                UserResultRow(user: user)
+                    if isLoading {
+                        ProgressView()
+                            .padding()
+                    } else if let error = errorMessage {
+                        VStack(spacing: 12) {
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.largeTitle)
+                                .foregroundColor(.orange)
+                            Text(error)
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                    } else if users.isEmpty && !searchText.isEmpty {
+                        VStack(spacing: 12) {
+                            Image(systemName: "magnifyingglass")
+                                .font(.largeTitle)
+                                .foregroundColor(.secondary)
+                            Text("No users found")
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                    } else {
+                        LazyVStack(spacing: 0) {
+                            ForEach(users) { user in
+                                NavigationLink(destination: UserProfileDetailView(user: user)) {
+                                    UserResultRow(user: user)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                 }
@@ -56,6 +70,28 @@ struct SearchView: View {
             .navigationTitle("Search")
             .navigationBarTitleDisplayMode(.inline)
             .background(Color(.systemGroupedBackground))
+            .task {
+                // Load initial users when view appears
+                await performSearch(query: "")
+            }
+        }
+    }
+    
+    private func performSearch(query: String) async {
+        isLoading = true
+        errorMessage = nil
+        
+        do {
+            let results = try await APIService.shared.searchUsers(query: query)
+            await MainActor.run {
+                users = results
+                isLoading = false
+            }
+        } catch {
+            await MainActor.run {
+                errorMessage = "Failed to search users: \(error.localizedDescription)"
+                isLoading = false
+            }
         }
     }
 }
@@ -255,10 +291,14 @@ struct UserProfileDetailView: View {
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text("Add bio here")
-                        .font(.system(.body, design: .rounded))
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    // Only show bio placeholder for current user's profile
+                    let currentUserId = UUID(uuidString: "00000000-0000-0000-0000-000000000001") ?? UUID()
+                    if user.id == currentUserId {
+                        Text("Add bio here")
+                            .font(.system(.body, design: .rounded))
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 .padding(.horizontal)
                 

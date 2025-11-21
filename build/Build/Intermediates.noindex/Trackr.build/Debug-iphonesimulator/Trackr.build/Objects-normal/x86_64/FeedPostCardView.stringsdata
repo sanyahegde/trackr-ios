@@ -1,0 +1,52 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/FeedPostCardView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld %@"
+      },
+      {
+        "comment": "",
+        "key": "•"
+      },
+      {
+        "comment": "",
+        "key": "Add a comment..."
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "@%@"
+      },
+      {
+        "comment": "",
+        "key": "12"
+      },
+      {
+        "comment": "",
+        "key": "Public Goals"
+      },
+      {
+        "comment": "",
+        "key": "45"
+      },
+      {
+        "comment": "",
+        "key": "Posts"
+      },
+      {
+        "comment": "",
+        "key": "No public goals yet"
+      },
+      {
+        "comment": "",
+        "key": "Done"
+      }
+    ]
+  },
+  "version": 1
+}

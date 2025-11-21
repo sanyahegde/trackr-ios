@@ -2,26 +2,36 @@ import Foundation
 
 class APIService: ObservableObject {
     static let shared = APIService()
-    private let baseURL = "http://localhost:3000/api"
+    private let baseURL = "http://localhost:8080/api/v1"
     
     private init() {}
     
     // MARK: - Posts
     
     func fetchPosts() async throws -> [Post] {
-        guard let url = URL(string: "\(baseURL)/posts") else {
+        // Use /feed endpoint instead of /posts
+        guard let url = URL(string: "\(baseURL)/feed") else {
             throw APIError.invalidURL
         }
         
-        let (data, response) = try await URLSession.shared.data(from: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        // TODO: Add auth token
+        // request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
+            if let errorString = String(data: data, encoding: .utf8) {
+                print("API Error: \(errorString)")
+            }
             throw APIError.invalidResponse
         }
         
-        let posts = try JSONDecoder().decode([PostResponse].self, from: data)
-        return posts.map { $0.toPost() }
+        // Backend returns { "posts": [...] }
+        let feedResponse = try JSONDecoder().decode(FeedResponse.self, from: data)
+        return feedResponse.posts.map { $0.toPost() }
     }
     
     func createPost(userId: UUID, goalId: UUID?, goalTitle: String?, caption: String, image: Data?) async throws -> Post {
@@ -31,50 +41,37 @@ class APIService: ObservableObject {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let boundary = "Boundary-\(UUID().uuidString)"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        // Get auth token from AuthManager (TODO: implement actual JWT)
+        // For now, we'll handle auth in middleware
+        // request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        var body = Data()
-        
-        // Add form fields
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"userId\"\r\n\r\n".data(using: .utf8)!)
-        body.append("\(userId.uuidString)\r\n".data(using: .utf8)!)
+        // Build JSON body
+        var body: [String: Any] = [
+            "caption": caption
+        ]
         
         if let goalId = goalId {
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"goalId\"\r\n\r\n".data(using: .utf8)!)
-            body.append("\(goalId.uuidString)\r\n".data(using: .utf8)!)
+            body["goal_id"] = goalId.uuidString
         }
         
-        if let goalTitle = goalTitle {
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"goalTitle\"\r\n\r\n".data(using: .utf8)!)
-            body.append("\(goalTitle)\r\n".data(using: .utf8)!)
-        }
-        
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"caption\"\r\n\r\n".data(using: .utf8)!)
-        body.append("\(caption)\r\n".data(using: .utf8)!)
-        
-        // Add image if present
+        // Note: Image upload would need separate endpoint or multipart/form-data
+        // For now, skip image in JSON request
         if let imageData = image {
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"image\"; filename=\"photo.jpg\"\r\n".data(using: .utf8)!)
-            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-            body.append(imageData)
-            body.append("\r\n".data(using: .utf8)!)
+            // TODO: Upload image first and get URL, or use multipart endpoint
+            // For now, just create post without image
         }
         
-        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        request.httpBody = body
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 201 else {
+            if let errorString = String(data: data, encoding: .utf8) {
+                print("API Error: \(errorString)")
+            }
             throw APIError.invalidResponse
         }
         
@@ -191,8 +188,8 @@ struct CommentResponse: Codable {
             userId: UUID(uuidString: user_id) ?? UUID(),
             userName: user_name ?? username ?? "Unknown",
             text: text,
-            likes: likes_count,
-            timestamp: ISO8601DateFormatter().date(from: created_at) ?? Date()
+            timestamp: ISO8601DateFormatter().date(from: created_at) ?? Date(),
+            likes: likes_count
         )
     }
 }
@@ -213,6 +210,10 @@ struct UserResponse: Codable {
             username: username
         )
     }
+}
+
+struct FeedResponse: Codable {
+    let posts: [PostResponse]
 }
 
 struct LikeResponse: Codable {

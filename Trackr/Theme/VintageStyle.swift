@@ -1,16 +1,30 @@
 import SwiftUI
 
 struct VintageCardModifier: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+    
     func body(content: Content) -> some View {
         content
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.white)
-                    .shadow(color: VintageColors.deepBrown.opacity(0.15), radius: 8, x: 0, y: 4)
+                    .fill(colorScheme == .dark ? VintageColors.parchment : Color.white)
+                    .shadow(
+                        color: colorScheme == .dark 
+                            ? Color.black.opacity(0.3) 
+                            : VintageColors.deepBrown.opacity(0.15),
+                        radius: colorScheme == .dark ? 10 : 8,
+                        x: 0,
+                        y: colorScheme == .dark ? 4 : 4
+                    )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(VintageColors.sepia.opacity(0.3), lineWidth: 2)
+                    .stroke(
+                        colorScheme == .dark 
+                            ? Color.white.opacity(0.1)
+                            : VintageColors.sepia.opacity(0.3),
+                        lineWidth: colorScheme == .dark ? 1 : 2
+                    )
             )
     }
 }

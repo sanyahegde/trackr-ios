@@ -28,6 +28,7 @@
 		1A000000000000000000003A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000003B /* HomeView.swift */; };
 		1A000000000000000000003C /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000003D /* FeedPost.swift */; };
 		1A000000000000000000003E /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000003F /* HapticManager.swift */; };
+		1A0000000000000000000081 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000080 /* AppTheme.swift */; };
 		1A0000000000000000000040 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000041 /* HomeViewModel.swift */; };
 		1A0000000000000000000042 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000043 /* GoalsViewModel.swift */; };
 		1A0000000000000000000044 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000045 /* DashboardViewModel.swift */; };
@@ -47,6 +48,16 @@
 		1A0000000000000000000064 /* OnboardingWalkthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000065 /* OnboardingWalkthroughView.swift */; };
 		1A0000000000000000000066 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000067 /* AuthManager.swift */; };
 		1A0000000000000000000068 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000069 /* ConfettiView.swift */; };
+		1A000000000000000000006A /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000006B /* APIService.swift */; };
+		1A000000000000000000006E /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000006F /* ShareButton.swift */; };
+		1A0000000000000000000070 /* FriendshipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000071 /* FriendshipService.swift */; };
+		1A0000000000000000000072 /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000073 /* Friendship.swift */; };
+		1A0000000000000000000074 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000075 /* Notification.swift */; };
+		1A0000000000000000000076 /* SharedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000077 /* SharedPost.swift */; };
+		1A0000000000000000000078 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000079 /* NotificationService.swift */; };
+		1A000000000000000000007A /* SharedPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000007B /* SharedPostsViewModel.swift */; };
+		1A000000000000000000007C /* SharedPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000007D /* SharedPostsView.swift */; };
+		1A000000000000000000007E /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000007F /* MessagesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +85,7 @@
 		1A000000000000000000003B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1A000000000000000000003D /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
 		1A000000000000000000003F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		1A0000000000000000000080 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		1A0000000000000000000041 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1A0000000000000000000043 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		1A0000000000000000000045 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +105,16 @@
 		1A0000000000000000000065 /* OnboardingWalkthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth/OnboardingWalkthroughView.swift"; sourceTree = "<group>"; };
 		1A0000000000000000000067 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthManager.swift"; sourceTree = "<group>"; };
 		1A0000000000000000000069 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConfettiView.swift"; sourceTree = "<group>"; };
+		1A000000000000000000006B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIService.swift"; sourceTree = "<group>"; };
+		1A000000000000000000006F /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/ShareButton.swift"; sourceTree = "<group>"; };
+		1A0000000000000000000071 /* FriendshipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendshipService.swift; sourceTree = "<group>"; };
+		1A0000000000000000000073 /* Friendship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
+		1A0000000000000000000075 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		1A0000000000000000000077 /* SharedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPost.swift; sourceTree = "<group>"; };
+		1A0000000000000000000079 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		1A000000000000000000007B /* SharedPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPostsViewModel.swift; sourceTree = "<group>"; };
+		1A000000000000000000007D /* SharedPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPostsView.swift; sourceTree = "<group>"; };
+		1A000000000000000000007F /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +142,11 @@
 				1A0000000000000000000002 /* TrackrApp.swift */,
 				1A000000000000000000001C /* Views */,
 				1A000000000000000000001D /* Models */,
+				1A000000000000000000006F /* ShareButton.swift */,
 				1A000000000000000000001E /* Theme */,
 				1A0000000000000000000048 /* ViewModels */,
 				1A0000000000000000000049 /* Utilities */,
+				1A000000000000000000006C /* Services */,
 				1A0000000000000000000016 /* Assets.xcassets */,
 				1A0000000000000000000017 /* Info.plist */,
 			);
@@ -161,6 +185,9 @@
 				1A0000000000000000000061 /* LoginView.swift */,
 				1A0000000000000000000063 /* ForgotPasswordView.swift */,
 				1A0000000000000000000065 /* OnboardingWalkthroughView.swift */,
+				1A000000000000000000006F /* ShareButton.swift */,
+				1A000000000000000000007D /* SharedPostsView.swift */,
+				1A000000000000000000007F /* MessagesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +203,9 @@
 				1A000000000000000000003D /* FeedPost.swift */,
 				1A0000000000000000000053 /* Post.swift */,
 				1A0000000000000000000057 /* Comment.swift */,
+				1A0000000000000000000073 /* Friendship.swift */,
+				1A0000000000000000000075 /* Notification.swift */,
+				1A0000000000000000000077 /* SharedPost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +218,7 @@
 				1A0000000000000000000045 /* DashboardViewModel.swift */,
 				1A0000000000000000000047 /* LeaderboardViewModel.swift */,
 				1A000000000000000000004B /* HomeFeedViewModel.swift */,
+				1A000000000000000000007B /* SharedPostsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -198,6 +229,9 @@
 				1A000000000000000000003F /* HapticManager.swift */,
 				1A0000000000000000000067 /* AuthManager.swift */,
 				1A0000000000000000000069 /* ConfettiView.swift */,
+				1A0000000000000000000071 /* FriendshipService.swift */,
+				1A0000000000000000000079 /* NotificationService.swift */,
+				1A0000000000000000000080 /* AppTheme.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -209,6 +243,14 @@
 				1A0000000000000000000014 /* VintageStyle.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		1A000000000000000000006C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1A000000000000000000006B /* APIService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +343,7 @@
 				1A000000000000000000003A /* HomeView.swift in Sources */,
 				1A000000000000000000003C /* FeedPost.swift in Sources */,
 				1A000000000000000000003E /* HapticManager.swift in Sources */,
+				1A0000000000000000000081 /* AppTheme.swift in Sources */,
 				1A0000000000000000000040 /* HomeViewModel.swift in Sources */,
 				1A0000000000000000000042 /* GoalsViewModel.swift in Sources */,
 				1A0000000000000000000044 /* DashboardViewModel.swift in Sources */,
@@ -320,6 +363,16 @@
 				1A0000000000000000000064 /* OnboardingWalkthroughView.swift in Sources */,
 				1A0000000000000000000066 /* AuthManager.swift in Sources */,
 				1A0000000000000000000068 /* ConfettiView.swift in Sources */,
+				1A000000000000000000006A /* APIService.swift in Sources */,
+				1A000000000000000000006E /* ShareButton.swift in Sources */,
+				1A0000000000000000000070 /* FriendshipService.swift in Sources */,
+				1A0000000000000000000072 /* Friendship.swift in Sources */,
+				1A0000000000000000000074 /* Notification.swift in Sources */,
+				1A0000000000000000000076 /* SharedPost.swift in Sources */,
+				1A0000000000000000000078 /* NotificationService.swift in Sources */,
+				1A000000000000000000007A /* SharedPostsViewModel.swift in Sources */,
+				1A000000000000000000007C /* SharedPostsView.swift in Sources */,
+				1A000000000000000000007E /* MessagesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

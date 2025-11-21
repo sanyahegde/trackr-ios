@@ -1,0 +1,36 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/GoalDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Goal Details"
+      },
+      {
+        "comment": "",
+        "key": "Category"
+      },
+      {
+        "comment": "",
+        "key": "Target Date"
+      },
+      {
+        "comment": "",
+        "key": "Progress"
+      },
+      {
+        "comment": "",
+        "key": "%lld%% Complete"
+      },
+      {
+        "comment": "",
+        "key": "Mark as Completed"
+      },
+      {
+        "comment": "",
+        "key": "Save Changes"
+      }
+    ]
+  },
+  "version": 1
+}

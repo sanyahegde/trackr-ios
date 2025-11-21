@@ -1,0 +1,160 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Appearance"
+      },
+      {
+        "comment": "",
+        "key": "Privacy"
+      },
+      {
+        "comment": "",
+        "key": "Notifications"
+      },
+      {
+        "comment": "",
+        "key": "Account"
+      },
+      {
+        "comment": "",
+        "key": "About"
+      },
+      {
+        "comment": "",
+        "key": "Dark Mode"
+      },
+      {
+        "comment": "",
+        "key": "Theme"
+      },
+      {
+        "comment": "",
+        "key": "Default"
+      },
+      {
+        "comment": "",
+        "key": "Warm"
+      },
+      {
+        "comment": "",
+        "key": "Cool"
+      },
+      {
+        "comment": "",
+        "key": "Show Profile"
+      },
+      {
+        "comment": "",
+        "key": "Show Goals"
+      },
+      {
+        "comment": "",
+        "key": "Show Stats"
+      },
+      {
+        "comment": "",
+        "key": "Location Services"
+      },
+      {
+        "comment": "",
+        "key": "Blocked Users"
+      },
+      {
+        "comment": "",
+        "key": "Goal Reminders"
+      },
+      {
+        "comment": "",
+        "key": "Friend Updates"
+      },
+      {
+        "comment": "",
+        "key": "Achievements"
+      },
+      {
+        "comment": "",
+        "key": "Weekly Digest"
+      },
+      {
+        "comment": "",
+        "key": "Edit Profile"
+      },
+      {
+        "comment": "",
+        "key": "Data & Storage"
+      },
+      {
+        "comment": "",
+        "key": "Rate on App Store"
+      },
+      {
+        "comment": "",
+        "key": "Contact Support"
+      },
+      {
+        "comment": "",
+        "key": "Privacy Policy"
+      },
+      {
+        "comment": "",
+        "key": "Terms of Service"
+      },
+      {
+        "comment": "",
+        "key": "Version"
+      },
+      {
+        "comment": "",
+        "key": "1.0.0"
+      },
+      {
+        "comment": "",
+        "key": "Log Out"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you want to log out?"
+      },
+      {
+        "comment": "",
+        "key": "Done"
+      },
+      {
+        "comment": "",
+        "key": "No blocked users"
+      },
+      {
+        "comment": "",
+        "key": "Storage"
+      },
+      {
+        "comment": "",
+        "key": "Actions"
+      },
+      {
+        "comment": "",
+        "key": "Used"
+      },
+      {
+        "comment": "",
+        "key": "45 MB"
+      },
+      {
+        "comment": "",
+        "key": "Clear Cache"
+      }
+    ]
+  },
+  "version": 1
+}

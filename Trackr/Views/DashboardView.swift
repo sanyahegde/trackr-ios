@@ -4,6 +4,7 @@ import Charts
 struct DashboardView: View {
     @ObservedObject var goalStore: GoalStore
     @StateObject private var analytics: AnalyticsViewModel
+    @Environment(\.colorScheme) var colorScheme
     
     init(goalStore: GoalStore) {
         self.goalStore = goalStore
@@ -85,21 +86,22 @@ struct DashboardStatCard: View {
     let value: String
     let icon: String
     let color: Color
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(spacing: 12) {
             Image(systemName: icon)
                 .font(.system(size: 32))
                 .foregroundColor(color)
-                .shadow(color: color.opacity(0.3), radius: 4, x: 0, y: 2)
+                .shadow(color: color.opacity(colorScheme == .dark ? 0.5 : 0.3), radius: 4, x: 0, y: 2)
             
             Text(value)
-                .font(.custom("Georgia", size: 28))
+                .font(.system(size: 28, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(VintageColors.deepBrown)
             
             Text(label)
-                .font(.custom("Georgia", size: 12))
+                .font(.system(size: 12, design: .rounded))
                 .foregroundColor(VintageColors.warmGray)
         }
         .frame(maxWidth: .infinity)
@@ -110,11 +112,12 @@ struct DashboardStatCard: View {
 
 struct CompletionChartView: View {
     let analytics: GoalAnalytics
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Goal Completion")
-                .font(.custom("Georgia", size: 20))
+                .font(.system(size: 20, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(VintageColors.deepBrown)
             
@@ -126,7 +129,7 @@ struct CompletionChartView: View {
                 .foregroundStyle(VintageColors.forestGreen)
                 .annotation(position: .overlay) {
                     Text("\(analytics.completedGoals)")
-                        .font(.custom("Georgia", size: 14))
+                        .font(.system(size: 14, design: .rounded))
                         .foregroundColor(.white)
                 }
                 
@@ -137,7 +140,7 @@ struct CompletionChartView: View {
                 .foregroundStyle(VintageColors.burntOrange)
                 .annotation(position: .overlay) {
                     Text("\(analytics.inProgressGoals)")
-                        .font(.custom("Georgia", size: 14))
+                        .font(.system(size: 14, design: .rounded))
                         .foregroundColor(.white)
                 }
             }
@@ -145,18 +148,18 @@ struct CompletionChartView: View {
             .chartXAxis {
                 AxisMarks { value in
                     AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
-                        .foregroundStyle(VintageColors.sepia.opacity(0.3))
+                        .foregroundStyle(VintageColors.warmGray.opacity(colorScheme == .dark ? 0.2 : 0.3))
                     AxisValueLabel()
-                        .font(.custom("Georgia", size: 12))
+                        .font(.system(size: 12, design: .rounded))
                         .foregroundStyle(VintageColors.deepBrown)
                 }
             }
             .chartYAxis {
                 AxisMarks { value in
                     AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
-                        .foregroundStyle(VintageColors.sepia.opacity(0.3))
+                        .foregroundStyle(VintageColors.warmGray.opacity(colorScheme == .dark ? 0.2 : 0.3))
                     AxisValueLabel()
-                        .font(.custom("Georgia", size: 10))
+                        .font(.system(size: 10, design: .rounded))
                         .foregroundStyle(VintageColors.warmGray)
                 }
             }
@@ -168,6 +171,7 @@ struct CompletionChartView: View {
 
 struct CategoryChartView: View {
     let analytics: GoalAnalytics
+    @Environment(\.colorScheme) var colorScheme
     
     var sortedCategories: [(key: String, value: Int)] {
         analytics.goalsByCategory.sorted { $0.value > $1.value }
@@ -176,7 +180,7 @@ struct CategoryChartView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Goals by Category")
-                .font(.custom("Georgia", size: 20))
+                .font(.system(size: 20, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(VintageColors.deepBrown)
             
@@ -189,7 +193,7 @@ struct CategoryChartView: View {
                     .foregroundStyle(VintageColors.colorForCategory(category.key))
                     .annotation(position: .overlay) {
                         Text("\(category.value)")
-                            .font(.custom("Georgia", size: 12))
+                            .font(.system(size: 12, design: .rounded))
                             .foregroundColor(.white)
                     }
                 }
@@ -198,18 +202,18 @@ struct CategoryChartView: View {
             .chartXAxis {
                 AxisMarks { value in
                     AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
-                        .foregroundStyle(VintageColors.sepia.opacity(0.3))
+                        .foregroundStyle(VintageColors.warmGray.opacity(colorScheme == .dark ? 0.2 : 0.3))
                     AxisValueLabel()
-                        .font(.custom("Georgia", size: 10))
+                        .font(.system(size: 10, design: .rounded))
                         .foregroundStyle(VintageColors.deepBrown)
                 }
             }
             .chartYAxis {
                 AxisMarks { value in
                     AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
-                        .foregroundStyle(VintageColors.sepia.opacity(0.3))
+                        .foregroundStyle(VintageColors.warmGray.opacity(colorScheme == .dark ? 0.2 : 0.3))
                     AxisValueLabel()
-                        .font(.custom("Georgia", size: 10))
+                        .font(.system(size: 10, design: .rounded))
                         .foregroundStyle(VintageColors.warmGray)
                 }
             }
@@ -221,11 +225,12 @@ struct CategoryChartView: View {
 
 struct ProgressOverviewView: View {
     let analytics: GoalAnalytics
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Overall Progress")
-                .font(.custom("Georgia", size: 20))
+                .font(.system(size: 20, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(VintageColors.deepBrown)
             
@@ -239,7 +244,7 @@ struct ProgressOverviewView: View {
                 if !sortedCategories.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Top Categories")
-                            .font(.custom("Georgia", size: 14))
+                            .font(.system(size: 14, design: .rounded))
                             .foregroundColor(VintageColors.deepBrown.opacity(0.7))
                         
                         ForEach(sortedCategories.prefix(3), id: \.key) { category in
@@ -249,20 +254,24 @@ struct ProgressOverviewView: View {
                                     .frame(width: 12, height: 12)
                                 
                                 Text(category.key)
-                                    .font(.custom("Georgia", size: 14))
+                                    .font(.system(size: 14, design: .rounded))
                                     .foregroundColor(VintageColors.deepBrown)
                                 
                                 Spacer()
                                 
                                 Text("\(category.value)")
-                                    .font(.custom("Georgia", size: 14))
+                                    .font(.system(size: 14, design: .rounded))
                                     .fontWeight(.semibold)
                                     .foregroundColor(VintageColors.warmGray)
                             }
                         }
                     }
                     .padding()
-                    .background(VintageColors.parchment.opacity(0.5))
+                    .background(
+                        colorScheme == .dark 
+                            ? Color.white.opacity(0.05)
+                            : VintageColors.parchment.opacity(0.5)
+                    )
                     .cornerRadius(10)
                 }
             }
@@ -302,7 +311,7 @@ struct ProgressRing: View {
                 
                 VStack {
                     Text("\(Int(progress * 100))%")
-                        .font(.custom("Georgia", size: 32))
+                        .font(.system(size: 32, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(VintageColors.deepBrown)
                 }
@@ -310,7 +319,7 @@ struct ProgressRing: View {
             .frame(width: 140, height: 140)
             
             Text(label)
-                .font(.custom("Georgia", size: 14))
+                .font(.system(size: 14, design: .rounded))
                 .foregroundColor(VintageColors.warmGray)
         }
     }

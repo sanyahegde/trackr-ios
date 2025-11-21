@@ -1,0 +1,24 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/AnimatedGoalCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Progress"
+      },
+      {
+        "comment": "",
+        "key": "%lld%%"
+      },
+      {
+        "comment": "",
+        "key": "Goal Details"
+      },
+      {
+        "comment": "",
+        "key": "Done"
+      }
+    ]
+  },
+  "version": 1
+}

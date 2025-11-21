@@ -1,0 +1,44 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/Auth/LoginView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Welcome Back"
+      },
+      {
+        "comment": "",
+        "key": "Continue your journey"
+      },
+      {
+        "comment": "",
+        "key": "Email"
+      },
+      {
+        "comment": "",
+        "key": "Password"
+      },
+      {
+        "comment": "",
+        "key": "Forgot Password?"
+      },
+      {
+        "comment": "",
+        "key": "Log In"
+      },
+      {
+        "comment": "",
+        "key": "Don't have an account?"
+      },
+      {
+        "comment": "",
+        "key": "Sign Up"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

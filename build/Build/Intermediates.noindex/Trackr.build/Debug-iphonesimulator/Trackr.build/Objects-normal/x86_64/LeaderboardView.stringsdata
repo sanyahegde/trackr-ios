@@ -1,0 +1,44 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/LeaderboardView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Leaderboard"
+      },
+      {
+        "comment": "",
+        "key": "Filter"
+      },
+      {
+        "comment": "",
+        "key": "All Rankings"
+      },
+      {
+        "comment": "",
+        "key": "2"
+      },
+      {
+        "comment": "",
+        "key": "1"
+      },
+      {
+        "comment": "",
+        "key": "3"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "@%@"
+      },
+      {
+        "comment": "",
+        "key": "%lld%% progress"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -2,24 +2,32 @@ import SwiftUI
 
 struct MainSettingsView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject private var authManager = AuthManager.shared
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    @AppStorage("skipAuthForTesting") private var skipAuthForTesting = true
+    @AppStorage("preferredColorScheme") private var preferredColorScheme = 0 // 0=auto, 1=light, 2=dark
     @State private var notifications = true
-    @State private var darkMode = false
     @State private var showLogoutAlert = false
+    
+    private var darkModeBinding: Binding<Bool> {
+        Binding(
+            get: { preferredColorScheme == 2 },
+            set: { newValue in
+                preferredColorScheme = newValue ? 2 : 1
+            }
+        )
+    }
     
     var body: some View {
         NavigationView {
             List {
                 Section("Appearance") {
-                    Toggle("Dark Mode", isOn: $darkMode)
-                        .onChange(of: darkMode) { _, newValue in
-                            // Handle dark mode toggle
-                        }
+                    Toggle("Dark Mode", isOn: darkModeBinding)
                     
-                    Picker("Theme", selection: .constant("Default")) {
-                        Text("Default").tag("Default")
-                        Text("Warm").tag("Warm")
-                        Text("Cool").tag("Cool")
+                    Picker("Color Scheme", selection: $preferredColorScheme) {
+                        Text("Auto").tag(0)
+                        Text("Light").tag(1)
+                        Text("Dark").tag(2)
                     }
                 }
                 
@@ -93,7 +101,7 @@ struct MainSettingsView: View {
                     .alert("Log Out", isPresented: $showLogoutAlert) {
                         Button("Cancel", role: .cancel) { }
                         Button("Log Out", role: .destructive) {
-                            // Handle logout
+                            handleLogout()
                         }
                     } message: {
                         Text("Are you sure you want to log out?")
@@ -113,6 +121,19 @@ struct MainSettingsView: View {
     }
     
     @State private var showLocation = false
+    
+    private func handleLogout() {
+        authManager.logout()
+        
+        // Disable skip auth to show login screen
+        skipAuthForTesting = false
+        
+        // Dismiss settings
+        dismiss()
+        
+        // Haptic feedback
+        HapticManager.shared.notification(.success)
+    }
 }
 
 struct BlockedUsersView: View {

@@ -1,0 +1,48 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/AddGoalView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "New Goal"
+      },
+      {
+        "comment": "",
+        "key": "Goal Information"
+      },
+      {
+        "comment": "",
+        "key": "Goal Title"
+      },
+      {
+        "comment": "",
+        "key": "Description"
+      },
+      {
+        "comment": "",
+        "key": "Details"
+      },
+      {
+        "comment": "",
+        "key": "Category"
+      },
+      {
+        "comment": "",
+        "key": "Privacy"
+      },
+      {
+        "comment": "",
+        "key": "Target Date"
+      },
+      {
+        "comment": "",
+        "key": "Add Goal"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

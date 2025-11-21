@@ -12,7 +12,7 @@ struct LeaderboardView: View {
     
     var body: some View {
         ZStack {
-            Color(.systemGroupedBackground)
+            VintageColors.cream
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
@@ -82,7 +82,7 @@ struct LeaderboardView: View {
         .onAppear {
             leaderboard.update(from: mockFriends, goals: goalStore.goals)
         }
-        .onChange(of: leaderboard.selectedFilter) { _ in
+        .onChange(of: leaderboard.selectedFilter) { _, _ in
             leaderboard.update(from: mockFriends, goals: goalStore.goals)
         }
         .navigationTitle("Leaderboard")
@@ -92,6 +92,7 @@ struct LeaderboardView: View {
 
 struct PodiumView: View {
     let entries: [LeaderboardEntry]
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 12) {
@@ -115,14 +116,14 @@ struct PodiumView: View {
                         
                         VStack {
                             Text("2")
-                                .font(.custom("Georgia", size: 24))
+                                .font(.system(size: 24, design: .rounded))
                                 .fontWeight(.bold)
                                 .foregroundColor(VintageColors.deepBrown)
                             
                             Spacer()
                             
                             Text(entries[1].user.name)
-                                .font(.custom("Georgia", size: 12))
+                                .font(.system(size: 12, design: .rounded))
                                 .fontWeight(.semibold)
                                 .foregroundColor(VintageColors.deepBrown)
                                 .multilineTextAlignment(.center)
@@ -152,14 +153,14 @@ struct PodiumView: View {
                     
                     VStack {
                         Text("1")
-                            .font(.custom("Georgia", size: 28))
+                            .font(.system(size: 28, design: .rounded))
                             .fontWeight(.bold)
                             .foregroundColor(VintageColors.deepBrown)
                         
                         Spacer()
                         
                         Text(entries[0].user.name)
-                            .font(.custom("Georgia", size: 12))
+                            .font(.system(size: 12, design: .rounded))
                             .fontWeight(.semibold)
                             .foregroundColor(VintageColors.deepBrown)
                             .multilineTextAlignment(.center)
@@ -188,14 +189,14 @@ struct PodiumView: View {
                         
                         VStack {
                             Text("3")
-                                .font(.custom("Georgia", size: 24))
+                                .font(.system(size: 24, design: .rounded))
                                 .fontWeight(.bold)
                                 .foregroundColor(VintageColors.deepBrown)
                             
                             Spacer()
                             
                             Text(entries[2].user.name)
-                                .font(.custom("Georgia", size: 12))
+                                .font(.system(size: 12, design: .rounded))
                                 .fontWeight(.semibold)
                                 .foregroundColor(VintageColors.deepBrown)
                                 .multilineTextAlignment(.center)
@@ -212,17 +213,18 @@ struct PodiumView: View {
 
 struct LeaderboardRowView: View {
     let entry: LeaderboardEntry
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack(spacing: 16) {
             // Rank
             ZStack {
                 Circle()
-                    .fill(VintageColors.sepia.opacity(0.2))
+                    .fill(VintageColors.sepia.opacity(colorScheme == .dark ? 0.3 : 0.2))
                     .frame(width: 40, height: 40)
                 
                 Text("\(entry.rank)")
-                    .font(.custom("Georgia", size: 18))
+                    .font(.system(size: 18, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(VintageColors.deepBrown)
             }
@@ -230,12 +232,12 @@ struct LeaderboardRowView: View {
             // User Info
             VStack(alignment: .leading, spacing: 4) {
                 Text(entry.user.name)
-                    .font(.custom("Georgia", size: 16))
+                    .font(.system(size: 16, design: .rounded))
                     .fontWeight(.semibold)
                     .foregroundColor(VintageColors.deepBrown)
                 
                 Text("@\(entry.user.username)")
-                    .font(.custom("Georgia", size: 12))
+                    .font(.system(size: 12, design: .rounded))
                     .foregroundColor(VintageColors.warmGray)
             }
             
@@ -248,13 +250,13 @@ struct LeaderboardRowView: View {
                         .font(.caption)
                         .foregroundColor(VintageColors.forestGreen)
                     Text("\(entry.completedGoals)")
-                        .font(.custom("Georgia", size: 14))
+                        .font(.system(size: 14, design: .rounded))
                         .fontWeight(.semibold)
                         .foregroundColor(VintageColors.deepBrown)
                 }
                 
                 Text("\(Int(entry.totalProgress * 100))% progress")
-                    .font(.custom("Georgia", size: 11))
+                    .font(.system(size: 11, design: .rounded))
                     .foregroundColor(VintageColors.warmGray)
             }
         }

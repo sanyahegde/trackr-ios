@@ -1,0 +1,52 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/SearchView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Search"
+      },
+      {
+        "comment": "",
+        "key": "@%@"
+      },
+      {
+        "comment": "",
+        "key": "Following"
+      },
+      {
+        "comment": "",
+        "key": "Follow"
+      },
+      {
+        "comment": "",
+        "key": "%lld%%"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Posts"
+      },
+      {
+        "comment": "",
+        "key": "Followers"
+      },
+      {
+        "comment": "",
+        "key": "Add bio here"
+      },
+      {
+        "comment": "",
+        "key": "Public Goals"
+      },
+      {
+        "comment": "",
+        "key": "No public goals"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -85,6 +85,24 @@ class HomeFeedViewModel: ObservableObject {
         posts.insert(post, at: 0)
     }
     
+    func deletePost(_ postId: UUID) {
+        posts.removeAll { $0.id == postId }
+    }
+    
+    func updatePost(_ post: Post) {
+        if let index = posts.firstIndex(where: { $0.id == post.id }) {
+            posts[index] = post
+        }
+    }
+    
+    func addComment(_ comment: Comment, to postId: UUID) {
+        if let index = posts.firstIndex(where: { $0.id == postId }) {
+            var updatedPost = posts[index]
+            updatedPost.comments.append(comment)
+            posts[index] = updatedPost
+        }
+    }
+    
     init() {
         loadFeed()
     }

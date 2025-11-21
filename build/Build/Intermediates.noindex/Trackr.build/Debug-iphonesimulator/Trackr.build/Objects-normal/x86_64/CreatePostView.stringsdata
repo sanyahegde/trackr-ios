@@ -1,0 +1,52 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/CreatePostView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Change Photo"
+      },
+      {
+        "comment": "",
+        "key": "Choose Photo"
+      },
+      {
+        "comment": "",
+        "key": "Share a moment from your goal journey"
+      },
+      {
+        "comment": "",
+        "key": "What's on your mind?"
+      },
+      {
+        "comment": "",
+        "key": "Write a caption"
+      },
+      {
+        "comment": "",
+        "key": "Goal"
+      },
+      {
+        "comment": "",
+        "key": "Link to Goal"
+      },
+      {
+        "comment": "",
+        "key": "None"
+      },
+      {
+        "comment": "",
+        "key": "Tag Location"
+      },
+      {
+        "comment": "",
+        "key": "Post"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

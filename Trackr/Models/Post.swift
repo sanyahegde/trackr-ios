@@ -16,6 +16,16 @@ struct Post: Identifiable {
     var isLiked: Bool
     var comments: [Comment]
     
+    // Mutable properties helper
+    mutating func addComment(_ comment: Comment) {
+        comments.append(comment)
+    }
+    
+    mutating func toggleLike() {
+        isLiked.toggle()
+        likes += isLiked ? 1 : -1
+    }
+    
     struct PostLocation {
         let latitude: Double
         let longitude: Double

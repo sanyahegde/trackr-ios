@@ -1,0 +1,36 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/MainTabView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Home"
+      },
+      {
+        "comment": "",
+        "key": "Search"
+      },
+      {
+        "comment": "",
+        "key": "Goals"
+      },
+      {
+        "comment": "",
+        "key": "Dashboard"
+      },
+      {
+        "comment": "",
+        "key": ""
+      },
+      {
+        "comment": "",
+        "key": "Leaderboard"
+      },
+      {
+        "comment": "",
+        "key": "Profile"
+      }
+    ]
+  },
+  "version": 1
+}

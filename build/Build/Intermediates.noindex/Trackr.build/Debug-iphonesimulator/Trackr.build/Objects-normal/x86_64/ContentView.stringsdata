@@ -1,0 +1,20 @@
+{
+  "source": "/Users/sanyahegde/Desktop/trackr/Trackr/Views/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Goals"
+      },
+      {
+        "comment": "",
+        "key": "No Goals Yet"
+      },
+      {
+        "comment": "",
+        "key": "Tap the + button to add your first goal!"
+      }
+    ]
+  },
+  "version": 1
+}

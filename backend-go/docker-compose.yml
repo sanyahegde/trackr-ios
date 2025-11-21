@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: trackr_postgres
+    environment:
+      POSTGRES_USER: trackr_user
+      POSTGRES_PASSWORD: trackr_password
+      POSTGRES_DB: trackr_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trackr_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trackr_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: trackr_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trackr_network
+    command: redis-server --appendonly yes
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trackr_api
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      ENV: development
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: trackr_user
+      DB_PASSWORD: trackr_password
+      DB_NAME: trackr_db
+      DB_SSLMODE: disable
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ""
+      JWT_SECRET: your-super-secret-jwt-key-change-this-in-production
+      JWT_EXPIRY_HOURS: 24
+      JWT_REFRESH_EXPIRY_HOURS: 168
+      CORS_ALLOWED_ORIGINS: "*"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - trackr_network
+    volumes:
+      - ./:/app
+    command: go run cmd/api/main.go
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  trackr_network:
+    driver: bridge
+
+
